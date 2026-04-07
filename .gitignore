@@ -1,0 +1,13 @@
+# Environments
+dependency_reader/venv/
+dependency_reader/.venv/
+venv/
+.venv/
+
+# Environment Variables / Secrets
+dependency_reader/.env
+.env
+
+# Python caches
+__pycache__/
+*.py[cod]
