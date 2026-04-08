@@ -1,908 +1,534 @@
 {
-    "source_file": "go.mod",
+    "source_file": "package.json",
     "dependencies": {
-        "github.com/bytedance/sonic": "v1.15.0",
-        "github.com/gin-contrib/sse": "v1.1.0",
-        "github.com/go-playground/validator/v10": "v10.30.1",
-        "github.com/goccy/go-json": "v0.10.6",
-        "github.com/goccy/go-yaml": "v1.19.2",
-        "github.com/json-iterator/go": "v1.1.12",
-        "github.com/mattn/go-isatty": "v0.0.20",
-        "github.com/modern-go/reflect2": "v1.0.2",
-        "github.com/pelletier/go-toml/v2": "v2.2.4",
-        "github.com/quic-go/quic-go": "v0.59.0",
-        "github.com/stretchr/testify": "v1.11.1",
-        "github.com/ugorji/go/codec": "v1.3.1",
-        "go.mongodb.org/mongo-driver/v2": "v2.5.0",
-        "golang.org/x/net": "v0.52.0",
-        "google.golang.org/protobuf": "v1.36.11",
-        "gopkg.in/yaml.v3": "v3.0.1",
-        "github.com/bytedance/gopkg": "v0.1.3",
-        "github.com/bytedance/sonic/loader": "v0.5.0",
-        "github.com/cloudwego/base64x": "v0.1.6",
-        "github.com/davecgh/go-spew": "v1.1.1",
-        "github.com/gabriel-vasile/mimetype": "v1.4.13",
-        "github.com/go-playground/locales": "v0.14.1",
-        "github.com/go-playground/universal-translator": "v0.18.1",
-        "github.com/klauspost/cpuid/v2": "v2.3.0",
-        "github.com/kr/text": "v0.2.0",
-        "github.com/leodido/go-urn": "v1.4.0",
-        "github.com/modern-go/concurrent": "v0.0.0-20180306012644-bacd9c7ef1dd",
-        "github.com/pmezard/go-difflib": "v1.0.0",
-        "github.com/quic-go/qpack": "v0.6.0",
-        "github.com/twitchyliquid64/golang-asm": "v0.15.1",
-        "go.uber.org/mock": "v0.6.0",
-        "golang.org/x/arch": "v0.25.0",
-        "golang.org/x/crypto": "v0.49.0",
-        "golang.org/x/sys": "v0.42.0",
-        "golang.org/x/text": "v0.35.0"
+        "follow-redirects": "^1.15.11",
+        "form-data": "^4.0.5",
+        "proxy-from-env": "^2.1.0",
+        "@babel/core": "^7.29.0",
+        "@babel/preset-env": "^7.29.0",
+        "@commitlint/cli": "^20.4.4",
+        "@commitlint/config-conventional": "^20.4.4",
+        "@eslint/js": "^10.0.1",
+        "@rollup/plugin-alias": "^6.0.0",
+        "@rollup/plugin-babel": "^7.0.0",
+        "@rollup/plugin-commonjs": "^29.0.2",
+        "@rollup/plugin-json": "^6.1.0",
+        "@rollup/plugin-node-resolve": "^16.0.3",
+        "@rollup/plugin-terser": "^1.0.0",
+        "@vitest/browser": "^4.1.1",
+        "@vitest/browser-playwright": "^4.1.1",
+        "abortcontroller-polyfill": "^1.7.8",
+        "auto-changelog": "^2.5.0",
+        "body-parser": "^2.2.2",
+        "chalk": "^5.6.2",
+        "cross-env": "^10.1.0",
+        "dev-null": "^0.1.1",
+        "eslint": "^10.1.0",
+        "express": "^5.2.1",
+        "formdata-node": "^6.0.3",
+        "formidable": "^3.2.4",
+        "fs-extra": "^11.3.4",
+        "get-stream": "^9.0.1",
+        "globals": "^17.4.0",
+        "gulp": "^5.0.1",
+        "handlebars": "^4.7.8",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.4.0",
+        "memoizee": "^0.4.17",
+        "minimist": "^1.2.8",
+        "multer": "^2.1.1",
+        "pacote": "^21.5.0",
+        "playwright": "^1.58.2",
+        "prettier": "^3.8.1",
+        "pretty-bytes": "^7.1.0",
+        "rollup": "^4.60.0",
+        "rollup-plugin-bundle-size": "^1.0.3",
+        "selfsigned": "^5.5.0",
+        "stream-throttle": "^0.1.3",
+        "string-replace-async": "^3.0.2",
+        "tar-stream": "^3.1.8",
+        "typescript": "^5.9.3",
+        "vitest": "^4.1.1"
     },
     "vulnerability_report": {
-        "ecosystem": "Go",
-        "packages_checked": 35,
-        "vulnerable_packages_count": 7,
-        "clean_packages_count": 28,
-        "total_advisories": 98,
+        "ecosystem": "npm",
+        "packages_checked": 48,
+        "vulnerable_packages_count": 13,
+        "clean_packages_count": 35,
+        "total_advisories": 47,
         "clean_packages": [
-            "github.com/bytedance/sonic",
-            "github.com/gin-contrib/sse",
-            "github.com/go-playground/validator/v10",
-            "github.com/goccy/go-json",
-            "github.com/goccy/go-yaml",
-            "github.com/json-iterator/go",
-            "github.com/mattn/go-isatty",
-            "github.com/modern-go/reflect2",
-            "github.com/pelletier/go-toml/v2",
-            "github.com/stretchr/testify",
-            "github.com/ugorji/go/codec",
-            "go.mongodb.org/mongo-driver/v2",
-            "github.com/bytedance/gopkg",
-            "github.com/bytedance/sonic/loader",
-            "github.com/cloudwego/base64x",
-            "github.com/davecgh/go-spew",
-            "github.com/gabriel-vasile/mimetype",
-            "github.com/go-playground/locales",
-            "github.com/go-playground/universal-translator",
-            "github.com/klauspost/cpuid/v2",
-            "github.com/kr/text",
-            "github.com/leodido/go-urn",
-            "github.com/modern-go/concurrent",
-            "github.com/pmezard/go-difflib",
-            "github.com/quic-go/qpack",
-            "github.com/twitchyliquid64/golang-asm",
-            "go.uber.org/mock",
-            "golang.org/x/arch"
+            "proxy-from-env",
+            "@babel/core",
+            "@babel/preset-env",
+            "@commitlint/cli",
+            "@commitlint/config-conventional",
+            "@eslint/js",
+            "@rollup/plugin-alias",
+            "@rollup/plugin-babel",
+            "@rollup/plugin-commonjs",
+            "@rollup/plugin-json",
+            "@rollup/plugin-node-resolve",
+            "@rollup/plugin-terser",
+            "@vitest/browser-playwright",
+            "abortcontroller-polyfill",
+            "auto-changelog",
+            "cross-env",
+            "dev-null",
+            "eslint",
+            "formdata-node",
+            "fs-extra",
+            "get-stream",
+            "globals",
+            "gulp",
+            "husky",
+            "lint-staged",
+            "memoizee",
+            "pacote",
+            "prettier",
+            "pretty-bytes",
+            "rollup-plugin-bundle-size",
+            "selfsigned",
+            "stream-throttle",
+            "string-replace-async",
+            "tar-stream",
+            "typescript"
         ],
         "vulnerable_packages": [
             {
-                "package": "github.com/quic-go/quic-go",
-                "version": "v0.59.0",
+                "package": "follow-redirects",
+                "version": "^1.15.11",
                 "vulnerabilities": [
                     {
-                        "id": "GHSA-3q6m-v84f-6p9h",
+                        "id": "GHSA-74fj-2j2h-c42q",
                         "cves": [
-                            "CVE-2023-46239"
+                            "CVE-2022-0155"
                         ],
                         "severity": "HIGH",
-                        "summary": "quic-go vulnerable to pointer dereference that can lead to panic"
+                        "summary": "Exposure of sensitive information in follow-redirects"
                     },
                     {
-                        "id": "GHSA-47m2-4cr7-mhcw",
+                        "id": "GHSA-cxjh-pqwp-8mfp",
                         "cves": [
-                            "CVE-2025-59530"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "quic-go: Panic occurs when queuing undecryptable packets after handshake completion"
-                    },
-                    {
-                        "id": "GHSA-c33x-xqrf-c478",
-                        "cves": [
-                            "CVE-2024-22189"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "QUIC's Connection ID Mechanism vulnerable to Memory Exhaustion Attack"
-                    },
-                    {
-                        "id": "GHSA-g754-hx8w-x2g6",
-                        "cves": [
-                            "CVE-2025-64702"
+                            "CVE-2024-28849"
                         ],
                         "severity": "UNKNOWN",
-                        "summary": "quic-go HTTP/3 QPACK Header Expansion DoS"
+                        "summary": "follow-redirects' Proxy-Authorization header kept across hosts"
                     },
                     {
-                        "id": "GHSA-j972-j939-p2v3",
+                        "id": "GHSA-jchw-25xp-jwwc",
                         "cves": [
-                            "CVE-2025-29785"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "quic-go Has Panic in Path Probe Loss Recovery Handling"
-                    },
-                    {
-                        "id": "GHSA-ppxx-5m9h-6vxf",
-                        "cves": [
-                            "CVE-2023-49295"
+                            "CVE-2023-26159"
                         ],
                         "severity": "UNKNOWN",
-                        "summary": "quic-go's path validation mechanism can be exploited to cause denial of service"
+                        "summary": "Follow Redirects improperly handles URLs in the url.parse() function"
                     },
                     {
-                        "id": "GHSA-px8v-pp82-rcvr",
+                        "id": "GHSA-pw2r-vq6v-hr8c",
                         "cves": [
-                            "CVE-2024-53259"
+                            "CVE-2022-0536"
                         ],
                         "severity": "UNKNOWN",
-                        "summary": "quic-go affected by an ICMP Packet Too Large Injection Attack on Linux"
-                    },
-                    {
-                        "id": "GO-2023-2160",
-                        "cves": [
-                            "CVE-2023-46239"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic during QUIC handshake in github.com/quic-go/quic-go"
-                    },
-                    {
-                        "id": "GO-2024-2459",
-                        "cves": [
-                            "CVE-2023-49295"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Denial of service via path validation in github.com/quic-go/quic-go"
-                    },
-                    {
-                        "id": "GO-2024-2682",
-                        "cves": [
-                            "CVE-2024-22189"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Denial of service via connection starvation in github.com/quic-go/quic-go"
-                    },
-                    {
-                        "id": "GO-2024-3302",
-                        "cves": [
-                            "CVE-2024-53259"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "ICMP Packet Too Large Injection Attack on Linux in github.com/quic-go/quic-go"
-                    },
-                    {
-                        "id": "GO-2025-3735",
-                        "cves": [
-                            "CVE-2025-29785"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic in Path Probe Loss Recovery Handling in github.com/quic-go/quic-go"
-                    },
-                    {
-                        "id": "GO-2025-4017",
-                        "cves": [
-                            "CVE-2025-59530"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic occurs when queuing undecryptable packets after handshake completion in github.com/quic-go/quic-go"
-                    },
-                    {
-                        "id": "GO-2025-4233",
-                        "cves": [
-                            "CVE-2025-64702"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "HTTP/3 QPACK Header Expansion DoS in github.com/quic-go/quic-go"
+                        "summary": "Exposure of Sensitive Information to an Unauthorized Actor in follow-redirects"
                     }
                 ]
             },
             {
-                "package": "golang.org/x/net",
-                "version": "v0.52.0",
+                "package": "form-data",
+                "version": "^4.0.5",
                 "vulnerabilities": [
                     {
-                        "id": "GHSA-2wp2-chmh-r934",
+                        "id": "GHSA-fjxv-7rqg-78g4",
                         "cves": [
-                            "CVE-2018-17142"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/html NULL Pointer Dereference vulnerability"
-                    },
-                    {
-                        "id": "GHSA-2wrh-6pvc-2jm9",
-                        "cves": [
-                            "CVE-2023-3978"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Improper rendering of text nodes in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GHSA-39qc-96h7-956f",
-                        "cves": [
-                            "CVE-2019-9512",
-                            "CVE-2019-9514"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/http vulnerable to a reset flood"
-                    },
-                    {
-                        "id": "GHSA-4374-p667-p6c8",
-                        "cves": [
-                            "CVE-2023-39325"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "HTTP/2 rapid reset can cause excessive work in net/http"
-                    },
-                    {
-                        "id": "GHSA-4r78-hx75-jjj2",
-                        "cves": [
-                            "CVE-2018-17847",
-                            "CVE-2018-17848"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/html has Improper Restriction of Operations within the Bounds of a Memory Buffer"
-                    },
-                    {
-                        "id": "GHSA-4v7x-pqxf-cx7m",
-                        "cves": [
-                            "CVE-2023-45288"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "net/http, x/net/http2: close connections when receiving too many headers"
-                    },
-                    {
-                        "id": "GHSA-5p4h-3377-7w67",
-                        "cves": [
-                            "CVE-2018-17075"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/html NULL Pointer Dereference vulnerability"
-                    },
-                    {
-                        "id": "GHSA-69cg-p879-7622",
-                        "cves": [
-                            "CVE-2022-27664"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/http2 Denial of Service vulnerability"
-                    },
-                    {
-                        "id": "GHSA-83g2-8m93-v3w7",
-                        "cves": [
-                            "CVE-2021-33194"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/html Infinite Loop vulnerability"
-                    },
-                    {
-                        "id": "GHSA-fcf9-6fv2-fc5v",
-                        "cves": [
-                            "CVE-2018-17143"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/html has Improper Restriction of Operations within the Bounds of a Memory Buffer"
-                    },
-                    {
-                        "id": "GHSA-fxg5-wq6x-vr4w",
-                        "cves": [
-                            "CVE-2022-41721"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/http2/h2c vulnerable to request smuggling attack"
-                    },
-                    {
-                        "id": "GHSA-h86h-8ppg-mxmh",
-                        "cves": [
-                            "CVE-2021-31525"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "golang.org/x/net/http/httpguts vulnerable to Uncontrolled Recursion"
-                    },
-                    {
-                        "id": "GHSA-hgr8-6h9x-f7q9",
-                        "cves": [
-                            "CVE-2019-9512",
-                            "CVE-2019-9514"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/http vulnerable to ping floods"
-                    },
-                    {
-                        "id": "GHSA-mv93-wvcp-7m7r",
-                        "cves": [
-                            "CVE-2018-17847",
-                            "CVE-2018-17848"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net/html Improper Validation of Array Index vulnerability"
-                    },
-                    {
-                        "id": "GHSA-qppj-fm5r-hxr3",
-                        "cves": [
-                            "CVE-2023-44487"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "HTTP/2 Stream Cancellation Attack"
-                    },
-                    {
-                        "id": "GHSA-qxp5-gwg8-xv66",
-                        "cves": [
-                            "CVE-2025-22870"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net"
-                    },
-                    {
-                        "id": "GHSA-vfw5-hrgq-h5wf",
-                        "cves": [
-                            "CVE-2018-17846"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "x/net/html Vulnerable to DoS During HTML Parsing"
-                    },
-                    {
-                        "id": "GHSA-vvgc-356p-c3xw",
-                        "cves": [
-                            "CVE-2025-22872"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "golang.org/x/net vulnerable to Cross-site Scripting"
-                    },
-                    {
-                        "id": "GHSA-vvpx-j8f3-3w6h",
-                        "cves": [
-                            "CVE-2022-41723"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/net vulnerable to Uncontrolled Resource Consumption"
-                    },
-                    {
-                        "id": "GHSA-xrjj-mj9h-534m",
-                        "cves": [
-                            "CVE-2022-41717"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "golang.org/x/net/http2 vulnerable to possible excessive memory growth"
-                    },
-                    {
-                        "id": "GO-2020-0014",
-                        "cves": [
-                            "CVE-2018-17846"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Infinite loop due to improper handling of \"select\" tags in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2021-0078",
-                        "cves": [
-                            "CVE-2018-17075"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic when parsing malformed HTML in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2021-0238",
-                        "cves": [
-                            "CVE-2021-33194"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Infinite loop when parsing inputs in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2022-0192",
-                        "cves": [
-                            "CVE-2018-17142"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Incorrect parsing of nested templates in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2022-0193",
-                        "cves": [
-                            "CVE-2018-17143"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic on unconsidered isindex and template combination in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2022-0197",
-                        "cves": [
-                            "CVE-2018-17847",
-                            "CVE-2018-17848"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic when parsing certain inputs in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2022-0236",
-                        "cves": [
-                            "CVE-2021-31525"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic due to large headers in net/http and golang.org/x/net/http/httpguts"
-                    },
-                    {
-                        "id": "GO-2022-0288",
-                        "cves": [
-                            "CVE-2021-44716"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Unbounded memory growth in net/http and golang.org/x/net/http2"
-                    },
-                    {
-                        "id": "GO-2022-0536",
-                        "cves": [
-                            "CVE-2019-9512",
-                            "CVE-2019-9514"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Reset flood in net/http and golang.org/x/net/http"
-                    },
-                    {
-                        "id": "GO-2022-0969",
-                        "cves": [
-                            "CVE-2022-27664"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Denial of service in net/http and golang.org/x/net/http2"
-                    },
-                    {
-                        "id": "GO-2022-1144",
-                        "cves": [
-                            "CVE-2022-41717"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Excessive memory growth in net/http and golang.org/x/net/http2"
-                    },
-                    {
-                        "id": "GO-2023-1495",
-                        "cves": [
-                            "CVE-2022-41721"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Request smuggling due to improper request handling in golang.org/x/net/http2/h2c"
-                    },
-                    {
-                        "id": "GO-2023-1571",
-                        "cves": [
-                            "CVE-2022-41723"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Denial of service via crafted HTTP/2 stream in net/http and golang.org/x/net"
-                    },
-                    {
-                        "id": "GO-2023-1988",
-                        "cves": [
-                            "CVE-2023-3978"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Improper rendering of text nodes in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2023-2102",
-                        "cves": [
-                            "CVE-2023-39325"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "HTTP/2 rapid reset can cause excessive work in net/http"
-                    },
-                    {
-                        "id": "GO-2024-2687",
-                        "cves": [
-                            "CVE-2023-45288"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "HTTP/2 CONTINUATION flood in net/http"
-                    },
-                    {
-                        "id": "GO-2024-3333",
-                        "cves": [
-                            "CVE-2024-45338"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Non-linear parsing of case-insensitive content in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2025-3503",
-                        "cves": [
-                            "CVE-2025-22870"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net"
-                    },
-                    {
-                        "id": "GO-2025-3595",
-                        "cves": [
-                            "CVE-2025-22872"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Incorrect Neutralization of Input During Web Page Generation in x/net in golang.org/x/net"
-                    },
-                    {
-                        "id": "GO-2026-4440",
-                        "cves": [
-                            "CVE-2025-47911"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Quadratic parsing complexity in golang.org/x/net/html"
-                    },
-                    {
-                        "id": "GO-2026-4441",
-                        "cves": [
-                            "CVE-2025-58190"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Infinite parsing loop in golang.org/x/net"
-                    },
-                    {
-                        "id": "GO-2026-4559",
-                        "cves": [
-                            "CVE-2026-27141"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Sending certain HTTP/2 frames can cause a server to panic in golang.org/x/net"
-                    }
-                ]
-            },
-            {
-                "package": "google.golang.org/protobuf",
-                "version": "v1.36.11",
-                "vulnerabilities": [
-                    {
-                        "id": "GHSA-8r3f-844c-mc37",
-                        "cves": [
-                            "CVE-2024-24786"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Golang protojson.Unmarshal function infinite loop when unmarshaling certain forms of invalid JSON"
-                    },
-                    {
-                        "id": "GHSA-hw7c-3rfg-p46j",
-                        "cves": [
-                            "CVE-2023-24535"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "google.golang.org/protobuf vulnerable to panic leading to denial of service"
-                    },
-                    {
-                        "id": "GO-2023-1631",
-                        "cves": [
-                            "CVE-2023-24535"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic when parsing invalid messages in google.golang.org/protobuf"
-                    },
-                    {
-                        "id": "GO-2024-2611",
-                        "cves": [
-                            "CVE-2024-24786"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Infinite loop in JSON unmarshaling in google.golang.org/protobuf"
-                    }
-                ]
-            },
-            {
-                "package": "gopkg.in/yaml.v3",
-                "version": "v3.0.1",
-                "vulnerabilities": [
-                    {
-                        "id": "GHSA-hp87-p4gw-j4gq",
-                        "cves": [
-                            "CVE-2022-28948"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "gopkg.in/yaml.v3 Denial of Service"
-                    },
-                    {
-                        "id": "GO-2022-0603",
-                        "cves": [
-                            "CVE-2022-28948"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic in gopkg.in/yaml.v3"
-                    }
-                ]
-            },
-            {
-                "package": "golang.org/x/crypto",
-                "version": "v0.49.0",
-                "vulnerabilities": [
-                    {
-                        "id": "GHSA-3vm4-22fp-5rfm",
-                        "cves": [
-                            "CVE-2020-29652"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/crypto/ssh NULL Pointer Dereference vulnerability"
-                    },
-                    {
-                        "id": "GHSA-45x7-px36-x8w8",
-                        "cves": [
-                            "CVE-2023-48795"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Prefix Truncation Attack against ChaCha20-Poly1305 and Encrypt-then-MAC aka Terrapin"
-                    },
-                    {
-                        "id": "GHSA-8c26-wmh5-6g9v",
-                        "cves": [
-                            "CVE-2022-27191"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/crypto/ssh Denial of service via crafted Signer"
-                    },
-                    {
-                        "id": "GHSA-cjjc-xp8v-855w",
-                        "cves": [
-                            "CVE-2020-7919"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "Helm uses crypto package vulnerable to panic from malformed X.509 certificate"
-                    },
-                    {
-                        "id": "GHSA-f6x5-jh6r-wrfv",
-                        "cves": [
-                            "CVE-2025-47914"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "golang.org/x/crypto/ssh/agent vulnerable to panic if message is malformed due to out of bounds read"
-                    },
-                    {
-                        "id": "GHSA-ffhg-7mh4-33c4",
-                        "cves": [
-                            "CVE-2020-9283"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "Improper Verification of Cryptographic Signature in golang.org/x/crypto"
-                    },
-                    {
-                        "id": "GHSA-gwc9-m7rh-j2ww",
-                        "cves": [
-                            "CVE-2021-43565"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "x/crypto/ssh vulnerable to panic via malformed packets"
-                    },
-                    {
-                        "id": "GHSA-hcg3-q754-cr77",
-                        "cves": [
-                            "CVE-2025-22869"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/crypto Vulnerable to Denial of Service (DoS) via Slow or Incomplete Key Exchange"
-                    },
-                    {
-                        "id": "GHSA-j5w8-q4qc-rx2x",
-                        "cves": [
-                            "CVE-2025-58181"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "golang.org/x/crypto/ssh allows an attacker to cause unbounded memory consumption"
-                    },
-                    {
-                        "id": "GHSA-r5c5-pr8j-pfp7",
-                        "cves": [
-                            "CVE-2019-11840"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "golang.org/x/crypto/salsa20/salsa uses insufficiently random values"
-                    },
-                    {
-                        "id": "GHSA-v778-237x-gjrc",
-                        "cves": [
-                            "CVE-2024-45337"
+                            "CVE-2025-7783"
                         ],
                         "severity": "CRITICAL",
-                        "summary": "Misuse of ServerConfig.PublicKeyCallback may cause authorization bypass in golang.org/x/crypto"
-                    },
-                    {
-                        "id": "GHSA-x3jr-pf6g-c48f",
-                        "cves": [
-                            "CVE-2019-11841"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Golang/x/crypto message forgery vulnerability"
-                    },
-                    {
-                        "id": "GHSA-xhjq-w7xm-p8qj",
-                        "cves": [
-                            "CVE-2017-3204"
-                        ],
-                        "severity": "HIGH",
-                        "summary": "golang.org/x/crypto/ssh Man-in-the-Middle attack"
-                    },
-                    {
-                        "id": "GO-2020-0012",
-                        "cves": [
-                            "CVE-2020-9283"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic due to improper verification of cryptographic signatures in golang.org/x/crypto/ssh"
-                    },
-                    {
-                        "id": "GO-2020-0013",
-                        "cves": [
-                            "CVE-2017-3204"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Man-in-the-middle attack in golang.org/x/crypto/ssh"
-                    },
-                    {
-                        "id": "GO-2021-0227",
-                        "cves": [
-                            "CVE-2020-29652"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic on crafted authentication request message in golang.org/x/crypto/ssh"
-                    },
-                    {
-                        "id": "GO-2021-0356",
-                        "cves": [
-                            "CVE-2022-27191"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Denial of service via crafted Signer in golang.org/x/crypto/ssh"
-                    },
-                    {
-                        "id": "GO-2022-0209",
-                        "cves": [
-                            "CVE-2019-11840"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Insufficiently random values in golang.org/x/crypto/salsa20"
-                    },
-                    {
-                        "id": "GO-2022-0229",
-                        "cves": [
-                            "CVE-2020-7919"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic in certificate parsing in crypto/x509 and golang.org/x/crypto/cryptobyte"
-                    },
-                    {
-                        "id": "GO-2022-0968",
-                        "cves": [
-                            "CVE-2021-43565"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Panic on malformed packets in golang.org/x/crypto/ssh"
-                    },
-                    {
-                        "id": "GO-2023-1992",
-                        "cves": [
-                            "CVE-2019-11841"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Misleading message verification in golang.org/x/crypto/openpgp/clearsign"
-                    },
-                    {
-                        "id": "GO-2023-2402",
-                        "cves": [
-                            "CVE-2023-48795"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Man-in-the-middle attacker can compromise integrity of secure channel in golang.org/x/crypto"
-                    },
-                    {
-                        "id": "GO-2024-2961",
-                        "cves": [
-                            "CVE-2022-30636"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Limited directory traversal vulnerability on Windows in golang.org/x/crypto"
-                    },
-                    {
-                        "id": "GO-2024-3321",
-                        "cves": [
-                            "CVE-2024-45337"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Misuse of connection.serverAuthenticate may cause authorization bypass in golang.org/x/crypto"
-                    },
-                    {
-                        "id": "GO-2025-3487",
-                        "cves": [
-                            "CVE-2025-22869"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Potential denial of service in golang.org/x/crypto"
-                    },
-                    {
-                        "id": "GO-2025-4116",
-                        "cves": [
-                            "CVE-2025-47913"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Potential denial of service in golang.org/x/crypto/ssh/agent"
-                    },
-                    {
-                        "id": "GO-2025-4134",
-                        "cves": [
-                            "CVE-2025-58181"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Unbounded memory consumption in golang.org/x/crypto/ssh"
-                    },
-                    {
-                        "id": "GO-2025-4135",
-                        "cves": [
-                            "CVE-2025-47914"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Malformed constraint may cause denial of service in golang.org/x/crypto/ssh/agent"
+                        "summary": "form-data uses unsafe random function in form-data for choosing boundary"
                     }
                 ]
             },
             {
-                "package": "golang.org/x/sys",
-                "version": "v0.42.0",
+                "package": "@vitest/browser",
+                "version": "^4.1.1",
                 "vulnerabilities": [
                     {
-                        "id": "GHSA-p782-xgp4-8hr8",
+                        "id": "GHSA-8gvc-j273-4wm5",
                         "cves": [
-                            "CVE-2022-29526"
+                            "CVE-2025-24963"
                         ],
                         "severity": "UNKNOWN",
-                        "summary": "golang.org/x/sys/unix has Incorrect privilege reporting in syscall"
-                    },
-                    {
-                        "id": "GO-2022-0493",
-                        "cves": [
-                            "CVE-2022-29526"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Incorrect privilege reporting in syscall and golang.org/x/sys/unix"
+                        "summary": "Vitest browser mode serves arbitrary files"
                     }
                 ]
             },
             {
-                "package": "golang.org/x/text",
-                "version": "v0.35.0",
+                "package": "body-parser",
+                "version": "^2.2.2",
                 "vulnerabilities": [
                     {
-                        "id": "GHSA-5rcv-m4m3-hfh7",
+                        "id": "GHSA-qwcr-r2fm-qrc7",
                         "cves": [
-                            "CVE-2020-14040"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "golang.org/x/text Infinite loop"
-                    },
-                    {
-                        "id": "GHSA-69ch-w2m2-3vjp",
-                        "cves": [
-                            "CVE-2022-32149"
+                            "CVE-2024-45590"
                         ],
                         "severity": "HIGH",
-                        "summary": "golang.org/x/text/language Denial of service via crafted Accept-Language header"
+                        "summary": "body-parser vulnerable to denial of service when url encoding is enabled"
                     },
                     {
-                        "id": "GHSA-ppp9-7jff-5vj2",
+                        "id": "GHSA-wqch-xfxh-vrr4",
                         "cves": [
-                            "CVE-2021-38561"
+                            "CVE-2025-13466"
+                        ],
+                        "severity": "UNKNOWN",
+                        "summary": "body-parser is vulnerable to denial of service when url encoding is used"
+                    }
+                ]
+            },
+            {
+                "package": "chalk",
+                "version": "^5.6.2",
+                "vulnerabilities": [
+                    {
+                        "id": "MAL-2025-46969",
+                        "cves": [],
+                        "severity": "UNKNOWN",
+                        "summary": "Malicious code in chalk (npm)"
+                    }
+                ]
+            },
+            {
+                "package": "express",
+                "version": "^5.2.1",
+                "vulnerabilities": [
+                    {
+                        "id": "GHSA-cm5g-3pgc-8rg4",
+                        "cves": [
+                            "CVE-2024-10491"
+                        ],
+                        "severity": "UNKNOWN",
+                        "summary": "Express ressource injection"
+                    },
+                    {
+                        "id": "GHSA-gpvr-g6gh-9mc2",
+                        "cves": [
+                            "CVE-2014-6393"
+                        ],
+                        "severity": "UNKNOWN",
+                        "summary": "No Charset in Content-Type Header in express"
+                    },
+                    {
+                        "id": "GHSA-jj78-5fmv-mv28",
+                        "cves": [
+                            "CVE-2024-9266"
+                        ],
+                        "severity": "LOW",
+                        "summary": "Express Open Redirect vulnerability"
+                    },
+                    {
+                        "id": "GHSA-qw6h-vgh9-j6wx",
+                        "cves": [
+                            "CVE-2024-43796"
+                        ],
+                        "severity": "LOW",
+                        "summary": "express vulnerable to XSS via response.redirect()"
+                    },
+                    {
+                        "id": "GHSA-rv95-896h-c2vc",
+                        "cves": [
+                            "CVE-2024-29041"
+                        ],
+                        "severity": "UNKNOWN",
+                        "summary": "Express.js Open Redirect in malformed URLs"
+                    }
+                ]
+            },
+            {
+                "package": "formidable",
+                "version": "^3.2.4",
+                "vulnerabilities": [
+                    {
+                        "id": "GHSA-75v8-2h7p-7m2m",
+                        "cves": [
+                            "CVE-2025-46653"
+                        ],
+                        "severity": "LOW",
+                        "summary": "Formidable relies on hexoid to prevent guessing of filenames for untrusted executable content"
+                    }
+                ]
+            },
+            {
+                "package": "handlebars",
+                "version": "^4.7.8",
+                "vulnerabilities": [
+                    {
+                        "id": "GHSA-2cf5-4w76-r9qv",
+                        "cves": [],
+                        "severity": "HIGH",
+                        "summary": "Arbitrary Code Execution in handlebars"
+                    },
+                    {
+                        "id": "GHSA-2qvq-rjwj-gvw9",
+                        "cves": [
+                            "CVE-2026-33916"
+                        ],
+                        "severity": "UNKNOWN",
+                        "summary": "Handlebars.js has Prototype Pollution Leading to XSS through Partial Template Injection"
+                    },
+                    {
+                        "id": "GHSA-2w6w-674q-4c4q",
+                        "cves": [
+                            "CVE-2026-33937"
+                        ],
+                        "severity": "CRITICAL",
+                        "summary": "Handlebars.js has JavaScript Injection via AST Type Confusion"
+                    },
+                    {
+                        "id": "GHSA-3cqr-58rm-57f8",
+                        "cves": [
+                            "CVE-2019-20920"
                         ],
                         "severity": "HIGH",
-                        "summary": "golang.org/x/text/language Out-of-bounds Read vulnerability"
+                        "summary": "Arbitrary Code Execution in Handlebars"
                     },
                     {
-                        "id": "GO-2020-0015",
+                        "id": "GHSA-3mfm-83xf-c92r",
                         "cves": [
-                            "CVE-2020-14040"
+                            "CVE-2026-33938"
                         ],
-                        "severity": "UNKNOWN",
-                        "summary": "Infinite loop when decoding some inputs in golang.org/x/text"
+                        "severity": "HIGH",
+                        "summary": "Handlebars.js has JavaScript Injection via AST Type Confusion by tampering @partial-block"
                     },
                     {
-                        "id": "GO-2021-0113",
-                        "cves": [
-                            "CVE-2021-38561"
-                        ],
-                        "severity": "UNKNOWN",
-                        "summary": "Out-of-bounds read in golang.org/x/text/language"
+                        "id": "GHSA-442j-39wm-28r2",
+                        "cves": [],
+                        "severity": "LOW",
+                        "summary": "Handlebars.js has a Property Access Validation Bypass in container.lookup"
                     },
                     {
-                        "id": "GO-2022-1059",
+                        "id": "GHSA-62gr-4qp9-h98f",
                         "cves": [
-                            "CVE-2022-32149"
+                            "CVE-2019-20922"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Regular Expression Denial of Service in Handlebars"
+                    },
+                    {
+                        "id": "GHSA-765h-qjxv-5f44",
+                        "cves": [
+                            "CVE-2021-23383"
+                        ],
+                        "severity": "CRITICAL",
+                        "summary": "Prototype Pollution in handlebars"
+                    },
+                    {
+                        "id": "GHSA-7rx3-28cr-v5wh",
+                        "cves": [],
+                        "severity": "UNKNOWN",
+                        "summary": "Handlebars.js has a Prototype Method Access Control Gap via Missing __lookupSetter__ Blocklist Entry"
+                    },
+                    {
+                        "id": "GHSA-9cx6-37pm-9jff",
+                        "cves": [
+                            "CVE-2026-33939"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Handlebars.js has Denial of Service via Malformed Decorator Syntax in Template Compilation"
+                    },
+                    {
+                        "id": "GHSA-9prh-257w-9277",
+                        "cves": [
+                            "CVE-2015-8861"
                         ],
                         "severity": "UNKNOWN",
-                        "summary": "Denial of service via crafted Accept-Language header in golang.org/x/text/language"
+                        "summary": "Cross-Site Scripting in handlebars"
+                    },
+                    {
+                        "id": "GHSA-f2jv-r9rf-7988",
+                        "cves": [
+                            "CVE-2021-23369"
+                        ],
+                        "severity": "CRITICAL",
+                        "summary": "Remote code execution in handlebars when compiling templates"
+                    },
+                    {
+                        "id": "GHSA-f52g-6jhx-586p",
+                        "cves": [],
+                        "severity": "UNKNOWN",
+                        "summary": "Denial of Service in handlebars"
+                    },
+                    {
+                        "id": "GHSA-g9r4-xpmj-mj65",
+                        "cves": [],
+                        "severity": "HIGH",
+                        "summary": "Prototype Pollution in handlebars"
+                    },
+                    {
+                        "id": "GHSA-q2c6-c6pm-g3gh",
+                        "cves": [],
+                        "severity": "HIGH",
+                        "summary": "Arbitrary Code Execution in handlebars"
+                    },
+                    {
+                        "id": "GHSA-q42p-pg8m-cqh6",
+                        "cves": [],
+                        "severity": "HIGH",
+                        "summary": "Prototype Pollution in handlebars"
+                    },
+                    {
+                        "id": "GHSA-w457-6q6x-cgp9",
+                        "cves": [
+                            "CVE-2019-19919"
+                        ],
+                        "severity": "CRITICAL",
+                        "summary": "Prototype Pollution in handlebars"
+                    },
+                    {
+                        "id": "GHSA-xhpv-hc6g-r9c6",
+                        "cves": [
+                            "CVE-2026-33940"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Handlebars.js has JavaScript Injection via AST Type Confusion when passing an object as dynamic partial"
+                    },
+                    {
+                        "id": "GHSA-xjpj-3mr7-gcpf",
+                        "cves": [
+                            "CVE-2026-33941"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Handlebars.js has JavaScript Injection in CLI Precompiler via Unescaped Names and Options"
+                    }
+                ]
+            },
+            {
+                "package": "minimist",
+                "version": "^1.2.8",
+                "vulnerabilities": [
+                    {
+                        "id": "GHSA-vh95-rmgr-6w4m",
+                        "cves": [
+                            "CVE-2020-7598"
+                        ],
+                        "severity": "UNKNOWN",
+                        "summary": "Prototype Pollution in minimist"
+                    },
+                    {
+                        "id": "GHSA-xvch-5gv4-984h",
+                        "cves": [
+                            "CVE-2021-44906"
+                        ],
+                        "severity": "CRITICAL",
+                        "summary": "Prototype Pollution in minimist"
+                    }
+                ]
+            },
+            {
+                "package": "multer",
+                "version": "^2.1.1",
+                "vulnerabilities": [
+                    {
+                        "id": "GHSA-44fp-w29j-9vj5",
+                        "cves": [
+                            "CVE-2025-47935"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Multer vulnerable to Denial of Service via memory leaks from unclosed streams"
+                    },
+                    {
+                        "id": "GHSA-4pg4-qvpc-4q3h",
+                        "cves": [
+                            "CVE-2025-47944"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Multer vulnerable to Denial of Service from maliciously crafted requests"
+                    },
+                    {
+                        "id": "GHSA-5528-5vmv-3xc2",
+                        "cves": [
+                            "CVE-2026-3520"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Multer Vulnerable to Denial of Service via Uncontrolled Recursion"
+                    },
+                    {
+                        "id": "GHSA-fjgf-rc76-4x9p",
+                        "cves": [
+                            "CVE-2025-7338"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Multer vulnerable to Denial of Service via unhandled exception from malformed request"
+                    },
+                    {
+                        "id": "GHSA-g5hg-p3ph-g8qg",
+                        "cves": [
+                            "CVE-2025-48997"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Multer vulnerable to Denial of Service via unhandled exception"
+                    },
+                    {
+                        "id": "GHSA-v52c-386h-88mc",
+                        "cves": [
+                            "CVE-2026-2359"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Multer vulnerable to Denial of Service via resource exhaustion"
+                    },
+                    {
+                        "id": "GHSA-xf7r-hgr6-v32p",
+                        "cves": [
+                            "CVE-2026-3304"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Multer vulnerable to Denial of Service via incomplete cleanup"
+                    }
+                ]
+            },
+            {
+                "package": "playwright",
+                "version": "^1.58.2",
+                "vulnerabilities": [
+                    {
+                        "id": "GHSA-7mvr-c777-76hp",
+                        "cves": [
+                            "CVE-2025-59288"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Playwright downloads and installs browsers without verifying the authenticity of the SSL certificate"
+                    }
+                ]
+            },
+            {
+                "package": "rollup",
+                "version": "^4.60.0",
+                "vulnerabilities": [
+                    {
+                        "id": "GHSA-gcx4-mw62-g8wm",
+                        "cves": [
+                            "CVE-2024-47068"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "DOM Clobbering Gadget found in rollup bundled scripts that leads to XSS"
+                    },
+                    {
+                        "id": "GHSA-mw96-cpmx-2vgc",
+                        "cves": [
+                            "CVE-2026-27606"
+                        ],
+                        "severity": "HIGH",
+                        "summary": "Rollup 4 has Arbitrary File Write via Path Traversal"
+                    }
+                ]
+            },
+            {
+                "package": "vitest",
+                "version": "^4.1.1",
+                "vulnerabilities": [
+                    {
+                        "id": "GHSA-9crc-q9x8-hgqq",
+                        "cves": [
+                            "CVE-2025-24964"
+                        ],
+                        "severity": "CRITICAL",
+                        "summary": "Vitest allows Remote Code Execution when accessing a malicious website while Vitest API server is listening"
                     }
                 ]
             }
