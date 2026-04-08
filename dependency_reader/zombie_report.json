@@ -1,0 +1,92 @@
+{
+    "repository": "https://github.com/ansible/ansible",
+    "scan_info": {
+        "total_dependencies": 5,
+        "zombies_found": 0,
+        "vulnerable_found": 3,
+        "repo_risk_score_100": 81,
+        "repo_status": "DANGEROUS (High probability of supply chain attack)"
+    },
+    "analysis": [
+        {
+            "package": "jinja2",
+            "version": ">= 3.1.0",
+            "status": "ALIVE",
+            "risk_score_100": 81,
+            "cve_count": 15,
+            "metrics": {
+                "days_since_last_commit": 297,
+                "maintainer_count": 30,
+                "open_issues": 96,
+                "is_deprecated": false,
+                "github_repo": "pallets/jinja"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "PyYAML",
+            "version": ">= 5.1",
+            "status": "ALIVE",
+            "risk_score_100": 75,
+            "cve_count": 8,
+            "metrics": {
+                "days_since_last_commit": 194,
+                "maintainer_count": 30,
+                "open_issues": 347,
+                "is_deprecated": false,
+                "github_repo": "yaml/pyyaml"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "cryptography",
+            "version": "",
+            "status": "ALIVE",
+            "risk_score_100": 65,
+            "cve_count": 27,
+            "metrics": {
+                "days_since_last_commit": 0,
+                "maintainer_count": 30,
+                "open_issues": 53,
+                "is_deprecated": false,
+                "github_repo": "pyca/cryptography"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "packaging",
+            "version": "",
+            "status": "ALIVE",
+            "risk_score_100": 15,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 1,
+                "maintainer_count": 30,
+                "open_issues": 107,
+                "is_deprecated": false,
+                "github_repo": "pypa/packaging"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "resolvelib",
+            "version": ">= 0.8.0, < 2.0.0",
+            "status": "ALIVE",
+            "risk_score_100": 8,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 23,
+                "maintainer_count": 27,
+                "open_issues": 23,
+                "is_deprecated": false,
+                "github_repo": "sarugaku/resolvelib"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        }
+    ]
+}

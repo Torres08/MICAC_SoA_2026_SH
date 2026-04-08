@@ -1,0 +1,290 @@
+torres in Github/SA/micac_soa_2026_sh/dependency_reader  juanlu                                      13:06:14
+❯ python main.py 
+
+=== Dependency Reader ===
+
+Enter the public repository link: https://github.com/gin-gonic/gin
+✓  Valid public repository.
+✓  Fetched root contents for 'gin-gonic/gin'.
+  ↳  Dependency file detected: go.mod
+
+──────────────────────────────────────────────────
+  Source file : go.mod
+  Packages    : 35
+──────────────────────────────────────────────────
+  github.com/bytedance/sonic                     v1.15.0
+  github.com/gin-contrib/sse                     v1.1.0
+  github.com/go-playground/validator/v10         v10.30.1
+  github.com/goccy/go-json                       v0.10.6
+  github.com/goccy/go-yaml                       v1.19.2
+  github.com/json-iterator/go                    v1.1.12
+  github.com/mattn/go-isatty                     v0.0.20
+  github.com/modern-go/reflect2                  v1.0.2
+  github.com/pelletier/go-toml/v2                v2.2.4
+  github.com/quic-go/quic-go                     v0.59.0
+  github.com/stretchr/testify                    v1.11.1
+  github.com/ugorji/go/codec                     v1.3.1
+  go.mongodb.org/mongo-driver/v2                 v2.5.0
+  golang.org/x/net                               v0.52.0
+  google.golang.org/protobuf                     v1.36.11
+  gopkg.in/yaml.v3                               v3.0.1
+  github.com/bytedance/gopkg                     v0.1.3
+  github.com/bytedance/sonic/loader              v0.5.0
+  github.com/cloudwego/base64x                   v0.1.6
+  github.com/davecgh/go-spew                     v1.1.1
+  github.com/gabriel-vasile/mimetype             v1.4.13
+  github.com/go-playground/locales               v0.14.1
+  github.com/go-playground/universal-translator  v0.18.1
+  github.com/klauspost/cpuid/v2                  v2.3.0
+  github.com/kr/text                             v0.2.0
+  github.com/leodido/go-urn                      v1.4.0
+  github.com/modern-go/concurrent                v0.0.0-20180306012644-bacd9c7ef1dd
+  github.com/pmezard/go-difflib                  v1.0.0
+  github.com/quic-go/qpack                       v0.6.0
+  github.com/twitchyliquid64/golang-asm          v0.15.1
+  go.uber.org/mock                               v0.6.0
+  golang.org/x/arch                              v0.25.0
+  golang.org/x/crypto                            v0.49.0
+  golang.org/x/sys                               v0.42.0
+  golang.org/x/text                              v0.35.0
+──────────────────────────────────────────────────
+
+
+═══════════════════════════════════════════════════════
+                 VULNERABILITY REPORT                
+  Ecosystem : Go  |  Packages checked: 35
+═══════════════════════════════════════════════════════
+  Querying OSV API… done.
+
+  Fetching vulnerability details… done.
+
+  [!] VULNERABLE (7)
+  ───────────────────────────────────────────────────
+
+  [PKG] github.com/quic-go/quic-go  v0.59.0
+     [VULN] GHSA-3q6m-v84f-6p9h  (CVE-2023-46239)  [HIGH]
+            quic-go vulnerable to pointer dereference that can lead to panic
+     [VULN] GHSA-47m2-4cr7-mhcw  (CVE-2025-59530)  [HIGH]
+            quic-go: Panic occurs when queuing undecryptable packets after handshake complet
+     [VULN] GHSA-c33x-xqrf-c478  (CVE-2024-22189)  [HIGH]
+            QUIC's Connection ID Mechanism vulnerable to Memory Exhaustion Attack
+     [VULN] GHSA-g754-hx8w-x2g6  (CVE-2025-64702)  [UNKNOWN]
+            quic-go HTTP/3 QPACK Header Expansion DoS
+     [VULN] GHSA-j972-j939-p2v3  (CVE-2025-29785)  [HIGH]
+            quic-go Has Panic in Path Probe Loss Recovery Handling
+     [VULN] GHSA-ppxx-5m9h-6vxf  (CVE-2023-49295)  [UNKNOWN]
+            quic-go's path validation mechanism can be exploited to cause denial of service
+     [VULN] GHSA-px8v-pp82-rcvr  (CVE-2024-53259)  [UNKNOWN]
+            quic-go affected by an ICMP Packet Too Large Injection Attack on Linux
+     [VULN] GO-2023-2160  (CVE-2023-46239)  [UNKNOWN]
+            Panic during QUIC handshake in github.com/quic-go/quic-go
+     [VULN] GO-2024-2459  (CVE-2023-49295)  [UNKNOWN]
+            Denial of service via path validation in github.com/quic-go/quic-go
+     [VULN] GO-2024-2682  (CVE-2024-22189)  [UNKNOWN]
+            Denial of service via connection starvation in github.com/quic-go/quic-go
+     [VULN] GO-2024-3302  (CVE-2024-53259)  [UNKNOWN]
+            ICMP Packet Too Large Injection Attack on Linux in github.com/quic-go/quic-go
+     [VULN] GO-2025-3735  (CVE-2025-29785)  [UNKNOWN]
+            Panic in Path Probe Loss Recovery Handling in github.com/quic-go/quic-go
+     [VULN] GO-2025-4017  (CVE-2025-59530)  [UNKNOWN]
+            Panic occurs when queuing undecryptable packets after handshake completion in gi
+     [VULN] GO-2025-4233  (CVE-2025-64702)  [UNKNOWN]
+            HTTP/3 QPACK Header Expansion DoS in github.com/quic-go/quic-go
+
+  [PKG] golang.org/x/net  v0.52.0
+     [VULN] GHSA-2wp2-chmh-r934  (CVE-2018-17142)  [HIGH]
+            golang.org/x/net/html NULL Pointer Dereference vulnerability
+     [VULN] GHSA-2wrh-6pvc-2jm9  (CVE-2023-3978)  [UNKNOWN]
+            Improper rendering of text nodes in golang.org/x/net/html
+     [VULN] GHSA-39qc-96h7-956f  (CVE-2019-9512, CVE-2019-9514)  [HIGH]
+            golang.org/x/net/http vulnerable to a reset flood
+     [VULN] GHSA-4374-p667-p6c8  (CVE-2023-39325)  [HIGH]
+            HTTP/2 rapid reset can cause excessive work in net/http
+     [VULN] GHSA-4r78-hx75-jjj2  (CVE-2018-17847, CVE-2018-17848)  [HIGH]
+            golang.org/x/net/html has Improper Restriction of Operations within the Bounds o
+     [VULN] GHSA-4v7x-pqxf-cx7m  (CVE-2023-45288)  [UNKNOWN]
+            net/http, x/net/http2: close connections when receiving too many headers
+     [VULN] GHSA-5p4h-3377-7w67  (CVE-2018-17075)  [HIGH]
+            golang.org/x/net/html NULL Pointer Dereference vulnerability
+     [VULN] GHSA-69cg-p879-7622  (CVE-2022-27664)  [HIGH]
+            golang.org/x/net/http2 Denial of Service vulnerability
+     [VULN] GHSA-83g2-8m93-v3w7  (CVE-2021-33194)  [HIGH]
+            golang.org/x/net/html Infinite Loop vulnerability
+     [VULN] GHSA-fcf9-6fv2-fc5v  (CVE-2018-17143)  [HIGH]
+            golang.org/x/net/html has Improper Restriction of Operations within the Bounds o
+     [VULN] GHSA-fxg5-wq6x-vr4w  (CVE-2022-41721)  [HIGH]
+            golang.org/x/net/http2/h2c vulnerable to request smuggling attack
+     [VULN] GHSA-h86h-8ppg-mxmh  (CVE-2021-31525)  [UNKNOWN]
+            golang.org/x/net/http/httpguts vulnerable to Uncontrolled Recursion
+     [VULN] GHSA-hgr8-6h9x-f7q9  (CVE-2019-9512, CVE-2019-9514)  [HIGH]
+            golang.org/x/net/http vulnerable to ping floods
+     [VULN] GHSA-mv93-wvcp-7m7r  (CVE-2018-17847, CVE-2018-17848)  [HIGH]
+            golang.org/x/net/html Improper Validation of Array Index vulnerability
+     [VULN] GHSA-qppj-fm5r-hxr3  (CVE-2023-44487)  [UNKNOWN]
+            HTTP/2 Stream Cancellation Attack
+     [VULN] GHSA-qxp5-gwg8-xv66  (CVE-2025-22870)  [UNKNOWN]
+            HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net
+     [VULN] GHSA-vfw5-hrgq-h5wf  (CVE-2018-17846)  [HIGH]
+            x/net/html Vulnerable to DoS During HTML Parsing
+     [VULN] GHSA-vvgc-356p-c3xw  (CVE-2025-22872)  [UNKNOWN]
+            golang.org/x/net vulnerable to Cross-site Scripting
+     [VULN] GHSA-vvpx-j8f3-3w6h  (CVE-2022-41723)  [HIGH]
+            golang.org/x/net vulnerable to Uncontrolled Resource Consumption
+     [VULN] GHSA-xrjj-mj9h-534m  (CVE-2022-41717)  [UNKNOWN]
+            golang.org/x/net/http2 vulnerable to possible excessive memory growth
+     [VULN] GO-2020-0014  (CVE-2018-17846)  [UNKNOWN]
+            Infinite loop due to improper handling of "select" tags in golang.org/x/net/html
+     [VULN] GO-2021-0078  (CVE-2018-17075)  [UNKNOWN]
+            Panic when parsing malformed HTML in golang.org/x/net/html
+     [VULN] GO-2021-0238  (CVE-2021-33194)  [UNKNOWN]
+            Infinite loop when parsing inputs in golang.org/x/net/html
+     [VULN] GO-2022-0192  (CVE-2018-17142)  [UNKNOWN]
+            Incorrect parsing of nested templates in golang.org/x/net/html
+     [VULN] GO-2022-0193  (CVE-2018-17143)  [UNKNOWN]
+            Panic on unconsidered isindex and template combination in golang.org/x/net/html
+     [VULN] GO-2022-0197  (CVE-2018-17847, CVE-2018-17848)  [UNKNOWN]
+            Panic when parsing certain inputs in golang.org/x/net/html
+     [VULN] GO-2022-0236  (CVE-2021-31525)  [UNKNOWN]
+            Panic due to large headers in net/http and golang.org/x/net/http/httpguts
+     [VULN] GO-2022-0288  (CVE-2021-44716)  [UNKNOWN]
+            Unbounded memory growth in net/http and golang.org/x/net/http2
+     [VULN] GO-2022-0536  (CVE-2019-9512, CVE-2019-9514)  [UNKNOWN]
+            Reset flood in net/http and golang.org/x/net/http
+     [VULN] GO-2022-0969  (CVE-2022-27664)  [UNKNOWN]
+            Denial of service in net/http and golang.org/x/net/http2
+     [VULN] GO-2022-1144  (CVE-2022-41717)  [UNKNOWN]
+            Excessive memory growth in net/http and golang.org/x/net/http2
+     [VULN] GO-2023-1495  (CVE-2022-41721)  [UNKNOWN]
+            Request smuggling due to improper request handling in golang.org/x/net/http2/h2c
+     [VULN] GO-2023-1571  (CVE-2022-41723)  [UNKNOWN]
+            Denial of service via crafted HTTP/2 stream in net/http and golang.org/x/net
+     [VULN] GO-2023-1988  (CVE-2023-3978)  [UNKNOWN]
+            Improper rendering of text nodes in golang.org/x/net/html
+     [VULN] GO-2023-2102  (CVE-2023-39325)  [UNKNOWN]
+            HTTP/2 rapid reset can cause excessive work in net/http
+     [VULN] GO-2024-2687  (CVE-2023-45288)  [UNKNOWN]
+            HTTP/2 CONTINUATION flood in net/http
+     [VULN] GO-2024-3333  (CVE-2024-45338)  [UNKNOWN]
+            Non-linear parsing of case-insensitive content in golang.org/x/net/html
+     [VULN] GO-2025-3503  (CVE-2025-22870)  [UNKNOWN]
+            HTTP Proxy bypass using IPv6 Zone IDs in golang.org/x/net
+     [VULN] GO-2025-3595  (CVE-2025-22872)  [UNKNOWN]
+            Incorrect Neutralization of Input During Web Page Generation in x/net in golang.
+     [VULN] GO-2026-4440  (CVE-2025-47911)  [UNKNOWN]
+            Quadratic parsing complexity in golang.org/x/net/html
+     [VULN] GO-2026-4441  (CVE-2025-58190)  [UNKNOWN]
+            Infinite parsing loop in golang.org/x/net
+     [VULN] GO-2026-4559  (CVE-2026-27141)  [UNKNOWN]
+            Sending certain HTTP/2 frames can cause a server to panic in golang.org/x/net
+
+  [PKG] google.golang.org/protobuf  v1.36.11
+     [VULN] GHSA-8r3f-844c-mc37  (CVE-2024-24786)  [UNKNOWN]
+            Golang protojson.Unmarshal function infinite loop when unmarshaling certain form
+     [VULN] GHSA-hw7c-3rfg-p46j  (CVE-2023-24535)  [HIGH]
+            google.golang.org/protobuf vulnerable to panic leading to denial of service
+     [VULN] GO-2023-1631  (CVE-2023-24535)  [UNKNOWN]
+            Panic when parsing invalid messages in google.golang.org/protobuf
+     [VULN] GO-2024-2611  (CVE-2024-24786)  [UNKNOWN]
+            Infinite loop in JSON unmarshaling in google.golang.org/protobuf
+
+  [PKG] gopkg.in/yaml.v3  v3.0.1
+     [VULN] GHSA-hp87-p4gw-j4gq  (CVE-2022-28948)  [HIGH]
+            gopkg.in/yaml.v3 Denial of Service
+     [VULN] GO-2022-0603  (CVE-2022-28948)  [UNKNOWN]
+            Panic in gopkg.in/yaml.v3
+
+  [PKG] golang.org/x/crypto  v0.49.0
+     [VULN] GHSA-3vm4-22fp-5rfm  (CVE-2020-29652)  [HIGH]
+            golang.org/x/crypto/ssh NULL Pointer Dereference vulnerability
+     [VULN] GHSA-45x7-px36-x8w8  (CVE-2023-48795)  [UNKNOWN]
+            Prefix Truncation Attack against ChaCha20-Poly1305 and Encrypt-then-MAC aka Terr
+     [VULN] GHSA-8c26-wmh5-6g9v  (CVE-2022-27191)  [HIGH]
+            golang.org/x/crypto/ssh Denial of service via crafted Signer
+     [VULN] GHSA-cjjc-xp8v-855w  (CVE-2020-7919)  [HIGH]
+            Helm uses crypto package vulnerable to panic from malformed X.509 certificate
+     [VULN] GHSA-f6x5-jh6r-wrfv  (CVE-2025-47914)  [UNKNOWN]
+            golang.org/x/crypto/ssh/agent vulnerable to panic if message is malformed due to
+     [VULN] GHSA-ffhg-7mh4-33c4  (CVE-2020-9283)  [HIGH]
+            Improper Verification of Cryptographic Signature in golang.org/x/crypto
+     [VULN] GHSA-gwc9-m7rh-j2ww  (CVE-2021-43565)  [HIGH]
+            x/crypto/ssh vulnerable to panic via malformed packets
+     [VULN] GHSA-hcg3-q754-cr77  (CVE-2025-22869)  [HIGH]
+            golang.org/x/crypto Vulnerable to Denial of Service (DoS) via Slow or Incomplete
+     [VULN] GHSA-j5w8-q4qc-rx2x  (CVE-2025-58181)  [UNKNOWN]
+            golang.org/x/crypto/ssh allows an attacker to cause unbounded memory consumption
+     [VULN] GHSA-r5c5-pr8j-pfp7  (CVE-2019-11840)  [UNKNOWN]
+            golang.org/x/crypto/salsa20/salsa uses insufficiently random values
+     [VULN] GHSA-v778-237x-gjrc  (CVE-2024-45337)  [CRITICAL]
+            Misuse of ServerConfig.PublicKeyCallback may cause authorization bypass in golan
+     [VULN] GHSA-x3jr-pf6g-c48f  (CVE-2019-11841)  [UNKNOWN]
+            Golang/x/crypto message forgery vulnerability
+     [VULN] GHSA-xhjq-w7xm-p8qj  (CVE-2017-3204)  [HIGH]
+            golang.org/x/crypto/ssh Man-in-the-Middle attack
+     [VULN] GO-2020-0012  (CVE-2020-9283)  [UNKNOWN]
+            Panic due to improper verification of cryptographic signatures in golang.org/x/c
+     [VULN] GO-2020-0013  (CVE-2017-3204)  [UNKNOWN]
+            Man-in-the-middle attack in golang.org/x/crypto/ssh
+     [VULN] GO-2021-0227  (CVE-2020-29652)  [UNKNOWN]
+            Panic on crafted authentication request message in golang.org/x/crypto/ssh
+     [VULN] GO-2021-0356  (CVE-2022-27191)  [UNKNOWN]
+            Denial of service via crafted Signer in golang.org/x/crypto/ssh
+     [VULN] GO-2022-0209  (CVE-2019-11840)  [UNKNOWN]
+            Insufficiently random values in golang.org/x/crypto/salsa20
+     [VULN] GO-2022-0229  (CVE-2020-7919)  [UNKNOWN]
+            Panic in certificate parsing in crypto/x509 and golang.org/x/crypto/cryptobyte
+     [VULN] GO-2022-0968  (CVE-2021-43565)  [UNKNOWN]
+            Panic on malformed packets in golang.org/x/crypto/ssh
+     [VULN] GO-2023-1992  (CVE-2019-11841)  [UNKNOWN]
+            Misleading message verification in golang.org/x/crypto/openpgp/clearsign
+     [VULN] GO-2023-2402  (CVE-2023-48795)  [UNKNOWN]
+            Man-in-the-middle attacker can compromise integrity of secure channel in golang.
+     [VULN] GO-2024-2961  (CVE-2022-30636)  [UNKNOWN]
+            Limited directory traversal vulnerability on Windows in golang.org/x/crypto
+     [VULN] GO-2024-3321  (CVE-2024-45337)  [UNKNOWN]
+            Misuse of connection.serverAuthenticate may cause authorization bypass in golang
+     [VULN] GO-2025-3487  (CVE-2025-22869)  [UNKNOWN]
+            Potential denial of service in golang.org/x/crypto
+     [VULN] GO-2025-4116  (CVE-2025-47913)  [UNKNOWN]
+            Potential denial of service in golang.org/x/crypto/ssh/agent
+     [VULN] GO-2025-4134  (CVE-2025-58181)  [UNKNOWN]
+            Unbounded memory consumption in golang.org/x/crypto/ssh
+     [VULN] GO-2025-4135  (CVE-2025-47914)  [UNKNOWN]
+            Malformed constraint may cause denial of service in golang.org/x/crypto/ssh/agen
+
+  [PKG] golang.org/x/sys  v0.42.0
+     [VULN] GHSA-p782-xgp4-8hr8  (CVE-2022-29526)  [UNKNOWN]
+            golang.org/x/sys/unix has Incorrect privilege reporting in syscall
+     [VULN] GO-2022-0493  (CVE-2022-29526)  [UNKNOWN]
+            Incorrect privilege reporting in syscall and golang.org/x/sys/unix
+
+  [PKG] golang.org/x/text  v0.35.0
+     [VULN] GHSA-5rcv-m4m3-hfh7  (CVE-2020-14040)  [UNKNOWN]
+            golang.org/x/text Infinite loop
+     [VULN] GHSA-69ch-w2m2-3vjp  (CVE-2022-32149)  [HIGH]
+            golang.org/x/text/language Denial of service via crafted Accept-Language header
+     [VULN] GHSA-ppp9-7jff-5vj2  (CVE-2021-38561)  [HIGH]
+            golang.org/x/text/language Out-of-bounds Read vulnerability
+     [VULN] GO-2020-0015  (CVE-2020-14040)  [UNKNOWN]
+            Infinite loop when decoding some inputs in golang.org/x/text
+     [VULN] GO-2021-0113  (CVE-2021-38561)  [UNKNOWN]
+            Out-of-bounds read in golang.org/x/text/language
+     [VULN] GO-2022-1059  (CVE-2022-32149)  [UNKNOWN]
+            Denial of service via crafted Accept-Language header in golang.org/x/text/langua
+
+  [OK] CLEAN (28)
+  ───────────────────────────────────────────────────
+  github.com/bytedance/sonic   github.com/gin-contrib/sse   github.com/go-playground/validator/v10
+  github.com/goccy/go-json   github.com/goccy/go-yaml   github.com/json-iterator/go
+  github.com/mattn/go-isatty   github.com/modern-go/reflect2   github.com/pelletier/go-toml/v2
+  github.com/stretchr/testify   github.com/ugorji/go/codec   go.mongodb.org/mongo-driver/v2
+  github.com/bytedance/gopkg   github.com/bytedance/sonic/loader   github.com/cloudwego/base64x
+  github.com/davecgh/go-spew   github.com/gabriel-vasile/mimetype   github.com/go-playground/locales
+  github.com/go-playground/universal-translator   github.com/klauspost/cpuid/v2   github.com/kr/text   
+  github.com/leodido/go-urn   github.com/modern-go/concurrent   github.com/pmezard/go-difflib
+  github.com/quic-go/qpack   github.com/twitchyliquid64/golang-asm   go.uber.org/mock     
+  golang.org/x/arch    
+
+  [SUMMARY] 7 vulnerable package(s), 28 clean  |  98 total advisories
+═══════════════════════════════════════════════════════
+
+✓  Saved to 'output.json'.

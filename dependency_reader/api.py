@@ -157,13 +157,51 @@ def _run_scan(repo_url: str) -> dict:
     return result
 
 
+def _run_zombie_scan(repo_url: str) -> dict:
+    """Runs Phase 2: Vulnerability Scan + Github Vital Signs -> Risk Score."""
+    from utils import (
+        validate_repository_link,
+        fetch_repository_metadata,
+        parse_dependencies,
+    )
+    from vulnerability_checker import check_vulnerabilities, _get_ecosystem
+    from vitality_enricher import enrich_all_packages
+    from risk_scorer import generate_zombie_report, save_zombie_report_json
+
+    if not validate_repository_link(repo_url):
+        raise ValueError("Repository validation failed.")
+
+    metadata = fetch_repository_metadata(repo_url)
+    if metadata is None:
+        raise RuntimeError("Could not fetch repository metadata.")
+
+    result = parse_dependencies(metadata)
+    if result is None:
+        raise RuntimeError("No supported dependency file found in the repository root.")
+
+    # 1. Run standard vulnerability scan
+    scan_result = check_vulnerabilities(result)
+    
+    # 2. Enrich with vitality (GitHub metrics)
+    ecosystem = _get_ecosystem(result["source_file"])
+    vitals_map = enrich_all_packages(result["dependencies"], ecosystem)
+    
+    # 3. Generate Zombie Report
+    report = generate_zombie_report(repo_url, scan_result, vitals_map)
+    
+    # Save the output file
+    target_path = str(Path(__file__).parent / "zombie_report.json")
+    save_zombie_report_json(report, target_path)
+    
+    return report
+
+
 # ── Routes ────────────────────────────────────────────────────────────────────
 @app.get("/report", summary="Return the latest vulnerability report")
 @limiter.limit("60/minute")
 async def get_report(request: Request):
     """
-    Returns the contents of the last generated output.json.
-    Run a POST /scan first if no report has been generated yet.
+    Returns the contents of the last generated output.json (Phase 1).
     """
     if not OUTPUT_FILE.exists():
         raise HTTPException(
@@ -181,10 +219,7 @@ async def get_report(request: Request):
 @limiter.limit("10/minute")
 async def post_scan(request: Request, body: ScanRequest):
     """
-    Accepts a GitHub repository URL, runs the full scan pipeline,
-    saves the result to output.json, and returns it.
-
-    Rate limited to 10 scans per minute per IP.
+    Phase 1 pipeline: CVE check only, saves output.json.
     """
     loop = asyncio.get_running_loop()
     try:
@@ -195,6 +230,45 @@ async def post_scan(request: Request, body: ScanRequest):
         raise HTTPException(status_code=502, detail=str(exc))
     except Exception:
         raise HTTPException(status_code=500, detail="An unexpected error occurred during the scan.")
+
+    return JSONResponse(content=result)
+
+
+@app.get("/zombie-report", summary="Return the latest zombie report")
+@limiter.limit("60/minute")
+async def get_zombie_report(request: Request):
+    """
+    Returns the contents of the last generated zombie_report.json (Phase 2).
+    """
+    zombie_file = Path(__file__).parent / "zombie_report.json"
+    if not zombie_file.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="No report found. Run POST /zombie-scan to generate one."
+        )
+    try:
+        data = json.loads(zombie_file.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        raise HTTPException(status_code=500, detail="Failed to read report file.")
+    return JSONResponse(content=data)
+
+
+@app.post("/zombie-scan", summary="Trigger a full Zombie detection scan")
+@limiter.limit("5/minute")
+async def post_zombie_scan(request: Request, body: ScanRequest):
+    """
+    Phase 2 pipeline: Vulnerability Scan + Github Vital Signs.
+    Saves and returns zombie_report.json.
+    """
+    loop = asyncio.get_running_loop()
+    try:
+        result = await loop.run_in_executor(_executor, _run_zombie_scan, body.repo_url)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+    except RuntimeError as exc:
+        raise HTTPException(status_code=502, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
 
     return JSONResponse(content=result)
 
