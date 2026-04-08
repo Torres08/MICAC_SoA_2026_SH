@@ -15,7 +15,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from requests.exceptions import RequestException
 
-from utils import _github_get
+from dependency_reader.utils import _github_get
 
 
 # Reusable session with a User-Agent makes requests more efficient (TCP pooling)
