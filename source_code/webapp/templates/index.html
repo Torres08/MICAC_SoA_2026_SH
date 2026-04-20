@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ship Happens</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<div class="overlay">
+
+    <div class="container">
+
+        <h1 class="title">
+            Ship Happens
+        </h1>
+
+        <p class="subtitle">
+            Analyze open-source repositories for vulnerable dependencies and zombie packages.
+        </p>
+
+        <div class="form-box">
+            <input
+                type="text"
+                id="repoInput"
+                placeholder="Enter GitHub Repository URL"
+            >
+
+            <button onclick="analyzeRepo()">
+                Analyze Repository
+            </button>
+        </div>
+
+        <div id="result" class="result-box"></div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

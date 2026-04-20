@@ -1,0 +1,572 @@
+{
+    "repository": "https://github.com/gin-gonic/gin",
+    "scan_info": {
+        "total_dependencies": 35,
+        "zombies_found": 2,
+        "vulnerable_found": 7,
+        "repo_risk_score_100": 100,
+        "repo_status": "DANGEROUS (High probability of supply chain attack)"
+    },
+    "analysis": [
+        {
+            "package": "gopkg.in/yaml.v3",
+            "version": "v3.0.1",
+            "status": "ZOMBIE",
+            "risk_score_100": 100,
+            "cve_count": 2,
+            "metrics": {
+                "days_since_last_commit": 383,
+                "maintainer_count": 30,
+                "open_issues": 422,
+                "is_deprecated": true,
+                "github_repo": "go-yaml/yaml"
+            },
+            "risk_level": "CRITICAL",
+            "recommendation": "IMMEDIATE ACTION REQUIRED: Package has vulnerabilities and is completely unmaintained. Replace immediately."
+        },
+        {
+            "package": "github.com/quic-go/quic-go",
+            "version": "v0.59.0",
+            "status": "ALIVE",
+            "risk_score_100": 65,
+            "cve_count": 14,
+            "metrics": {
+                "days_since_last_commit": 1,
+                "maintainer_count": 30,
+                "open_issues": 213,
+                "is_deprecated": false,
+                "github_repo": "quic-go/quic-go"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "golang.org/x/net",
+            "version": "v0.52.0",
+            "status": "ALIVE",
+            "risk_score_100": 65,
+            "cve_count": 42,
+            "metrics": {
+                "days_since_last_commit": 3,
+                "maintainer_count": 30,
+                "open_issues": 55,
+                "is_deprecated": false,
+                "github_repo": "golang/net"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "google.golang.org/protobuf",
+            "version": "v1.36.11",
+            "status": "ALIVE",
+            "risk_score_100": 48,
+            "cve_count": 4,
+            "metrics": {
+                "days_since_last_commit": 89,
+                "maintainer_count": 30,
+                "open_issues": 12,
+                "is_deprecated": false,
+                "github_repo": "protocolbuffers/protobuf-go"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "golang.org/x/crypto",
+            "version": "v0.49.0",
+            "status": "ALIVE",
+            "risk_score_100": 65,
+            "cve_count": 28,
+            "metrics": {
+                "days_since_last_commit": 6,
+                "maintainer_count": 30,
+                "open_issues": 85,
+                "is_deprecated": false,
+                "github_repo": "golang/crypto"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "golang.org/x/sys",
+            "version": "v0.42.0",
+            "status": "ALIVE",
+            "risk_score_100": 31,
+            "cve_count": 2,
+            "metrics": {
+                "days_since_last_commit": 6,
+                "maintainer_count": 30,
+                "open_issues": 38,
+                "is_deprecated": false,
+                "github_repo": "golang/sys"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "golang.org/x/text",
+            "version": "v0.35.0",
+            "status": "ALIVE",
+            "risk_score_100": 57,
+            "cve_count": 6,
+            "metrics": {
+                "days_since_last_commit": 11,
+                "maintainer_count": 30,
+                "open_issues": 24,
+                "is_deprecated": false,
+                "github_repo": "golang/text"
+            },
+            "risk_level": "HIGH",
+            "recommendation": "Update package to patch known vulnerabilities."
+        },
+        {
+            "package": "github.com/json-iterator/go",
+            "version": "v1.1.12",
+            "status": "ZOMBIE",
+            "risk_score_100": 100,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 1312,
+                "maintainer_count": 30,
+                "open_issues": 272,
+                "is_deprecated": true,
+                "github_repo": "json-iterator/go"
+            },
+            "risk_level": "MEDIUM",
+            "recommendation": "Package is dead. Technical debt warning. Plan migration to active alternative."
+        },
+        {
+            "package": "github.com/bytedance/sonic",
+            "version": "v1.15.0",
+            "status": "ALIVE",
+            "risk_score_100": 11,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 21,
+                "maintainer_count": 30,
+                "open_issues": 33,
+                "is_deprecated": false,
+                "github_repo": "bytedance/sonic"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/gin-contrib/sse",
+            "version": "v1.1.0",
+            "status": "ALIVE",
+            "risk_score_100": 2,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 5,
+                "maintainer_count": 8,
+                "open_issues": 6,
+                "is_deprecated": false,
+                "github_repo": "gin-contrib/sse"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/go-playground/validator/v10",
+            "version": "v10.30.1",
+            "status": "ALIVE",
+            "risk_score_100": 15,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 0,
+                "maintainer_count": 30,
+                "open_issues": 320,
+                "is_deprecated": false,
+                "github_repo": "go-playground/validator"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/goccy/go-json",
+            "version": "v0.10.6",
+            "status": "ALIVE",
+            "risk_score_100": 24,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 174,
+                "maintainer_count": 28,
+                "open_issues": 132,
+                "is_deprecated": false,
+                "github_repo": "goccy/go-json"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/goccy/go-yaml",
+            "version": "v1.19.2",
+            "status": "ALIVE",
+            "risk_score_100": 15,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 12,
+                "maintainer_count": 30,
+                "open_issues": 164,
+                "is_deprecated": false,
+                "github_repo": "goccy/go-yaml"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/mattn/go-isatty",
+            "version": "v0.0.20",
+            "status": "ALIVE",
+            "risk_score_100": 4,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 11,
+                "maintainer_count": 29,
+                "open_issues": 14,
+                "is_deprecated": false,
+                "github_repo": "mattn/go-isatty"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/modern-go/reflect2",
+            "version": "v1.0.2",
+            "status": "ALIVE",
+            "risk_score_100": 25,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 393,
+                "maintainer_count": 9,
+                "open_issues": 19,
+                "is_deprecated": false,
+                "github_repo": "modern-go/reflect2"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/pelletier/go-toml/v2",
+            "version": "v2.2.4",
+            "status": "ALIVE",
+            "risk_score_100": 10,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 3,
+                "maintainer_count": 30,
+                "open_issues": 35,
+                "is_deprecated": false,
+                "github_repo": "pelletier/go-toml"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/stretchr/testify",
+            "version": "v1.11.1",
+            "status": "ALIVE",
+            "risk_score_100": 17,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 47,
+                "maintainer_count": 30,
+                "open_issues": 377,
+                "is_deprecated": false,
+                "github_repo": "stretchr/testify"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/ugorji/go/codec",
+            "version": "v1.3.1",
+            "status": "ALIVE",
+            "risk_score_100": 11,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 174,
+                "maintainer_count": 20,
+                "open_issues": 6,
+                "is_deprecated": false,
+                "github_repo": "ugorji/go"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "go.mongodb.org/mongo-driver/v2",
+            "version": "v2.5.0",
+            "status": "ALIVE",
+            "risk_score_100": 3,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 3,
+                "maintainer_count": 30,
+                "open_issues": 10,
+                "is_deprecated": false,
+                "github_repo": "mongodb/mongo-go-driver"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/bytedance/gopkg",
+            "version": "v0.1.3",
+            "status": "ALIVE",
+            "risk_score_100": 11,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 34,
+                "maintainer_count": 30,
+                "open_issues": 31,
+                "is_deprecated": false,
+                "github_repo": "bytedance/gopkg"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/bytedance/sonic/loader",
+            "version": "v0.5.0",
+            "status": "ALIVE",
+            "risk_score_100": 11,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 21,
+                "maintainer_count": 30,
+                "open_issues": 33,
+                "is_deprecated": false,
+                "github_repo": "bytedance/sonic"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/cloudwego/base64x",
+            "version": "v0.1.6",
+            "status": "ALIVE",
+            "risk_score_100": 14,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 259,
+                "maintainer_count": 6,
+                "open_issues": 1,
+                "is_deprecated": false,
+                "github_repo": "cloudwego/base64x"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/davecgh/go-spew",
+            "version": "v1.1.1",
+            "status": "ALIVE",
+            "risk_score_100": 35,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 2789,
+                "maintainer_count": 20,
+                "open_issues": 69,
+                "is_deprecated": false,
+                "github_repo": "davecgh/go-spew"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/gabriel-vasile/mimetype",
+            "version": "v1.4.13",
+            "status": "ALIVE",
+            "risk_score_100": 10,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 0,
+                "maintainer_count": 30,
+                "open_issues": 36,
+                "is_deprecated": false,
+                "github_repo": "gabriel-vasile/mimetype"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/go-playground/locales",
+            "version": "v0.14.1",
+            "status": "ALIVE",
+            "risk_score_100": 25,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 1200,
+                "maintainer_count": 11,
+                "open_issues": 18,
+                "is_deprecated": false,
+                "github_repo": "go-playground/locales"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/go-playground/universal-translator",
+            "version": "v0.18.1",
+            "status": "ALIVE",
+            "risk_score_100": 23,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 1176,
+                "maintainer_count": 10,
+                "open_issues": 10,
+                "is_deprecated": false,
+                "github_repo": "go-playground/universal-translator"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/klauspost/cpuid/v2",
+            "version": "v2.3.0",
+            "status": "ALIVE",
+            "risk_score_100": 2,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 21,
+                "maintainer_count": 30,
+                "open_issues": 5,
+                "is_deprecated": false,
+                "github_repo": "klauspost/cpuid"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/kr/text",
+            "version": "v0.2.0",
+            "status": "ALIVE",
+            "risk_score_100": 20,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 1504,
+                "maintainer_count": 7,
+                "open_issues": 3,
+                "is_deprecated": false,
+                "github_repo": "kr/text"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/leodido/go-urn",
+            "version": "v1.4.0",
+            "status": "ALIVE",
+            "risk_score_100": 21,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 810,
+                "maintainer_count": 6,
+                "open_issues": 4,
+                "is_deprecated": false,
+                "github_repo": "leodido/go-urn"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/modern-go/concurrent",
+            "version": "v0.0.0-20180306012644-bacd9c7ef1dd",
+            "status": "ALIVE",
+            "risk_score_100": 22,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 2967,
+                "maintainer_count": 2,
+                "open_issues": 7,
+                "is_deprecated": false,
+                "github_repo": "modern-go/concurrent"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/pmezard/go-difflib",
+            "version": "v1.0.0",
+            "status": "ALIVE",
+            "risk_score_100": 21,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 2672,
+                "maintainer_count": 6,
+                "open_issues": 4,
+                "is_deprecated": false,
+                "github_repo": "pmezard/go-difflib"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/quic-go/qpack",
+            "version": "v0.6.0",
+            "status": "ALIVE",
+            "risk_score_100": 1,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 8,
+                "maintainer_count": 6,
+                "open_issues": 4,
+                "is_deprecated": false,
+                "github_repo": "quic-go/qpack"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "github.com/twitchyliquid64/golang-asm",
+            "version": "v0.15.1",
+            "status": "ALIVE",
+            "risk_score_100": 35,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 1924,
+                "maintainer_count": 1,
+                "open_issues": 1,
+                "is_deprecated": false,
+                "github_repo": "twitchyliquid64/golang-asm"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "go.uber.org/mock",
+            "version": "v0.6.0",
+            "status": "ALIVE",
+            "risk_score_100": 21,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 123,
+                "maintainer_count": 30,
+                "open_issues": 102,
+                "is_deprecated": false,
+                "github_repo": "uber/mock"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        },
+        {
+            "package": "golang.org/x/arch",
+            "version": "v0.25.0",
+            "status": "ALIVE",
+            "risk_score_100": 1,
+            "cve_count": 0,
+            "metrics": {
+                "days_since_last_commit": 2,
+                "maintainer_count": 30,
+                "open_issues": 6,
+                "is_deprecated": false,
+                "github_repo": "golang/arch"
+            },
+            "risk_level": "LOW",
+            "recommendation": "Package is healthy and actively maintained."
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+from flask import Flask, render_template, request, jsonify
+import requests
+
+app = Flask(__name__)
+
+SCANNER_API = "http://127.0.0.1:8000/zombie-scan"
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/analyze", methods=["POST"])
+def analyze():
+
+    repo = request.json.get("repo")
+
+    try:
+        response = requests.post(
+            SCANNER_API,
+            json={"repo_url": repo},
+            timeout=600
+        )
+
+        return jsonify(response.json())
+
+    except Exception:
+        return jsonify({"error": "Scanner API unreachable"}), 500
