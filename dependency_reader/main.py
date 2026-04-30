@@ -45,15 +45,15 @@ Authentication (Optional but Recommended):
 """
 
 import sys
-from dependency_reader.utils import (
+from utils import (
     get_repository_link,
     fetch_repository_metadata,
     parse_dependencies,
     generate_output,
 )
-from dependency_reader.vulnerability_checker import check_vulnerabilities, _get_ecosystem
-from dependency_reader.vitality_enricher import enrich_all_packages
-from dependency_reader.risk_scorer import generate_zombie_report, save_zombie_report_json
+from vulnerability_checker import check_vulnerabilities, _get_ecosystem
+from vitality_enricher import enrich_all_packages
+from risk_scorer import generate_zombie_report, save_zombie_report_json
 
 def run_analysis(repo_link: str, save: bool = True):
     """

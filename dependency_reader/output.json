@@ -55,7 +55,7 @@
         "packages_checked": 48,
         "vulnerable_packages_count": 13,
         "clean_packages_count": 35,
-        "total_advisories": 47,
+        "total_advisories": 48,
         "clean_packages": [
             "proxy-from-env",
             "@babel/core",
@@ -129,6 +129,12 @@
                         ],
                         "severity": "UNKNOWN",
                         "summary": "Exposure of Sensitive Information to an Unauthorized Actor in follow-redirects"
+                    },
+                    {
+                        "id": "GHSA-r4q5-vmmm-2653",
+                        "cves": [],
+                        "severity": "UNKNOWN",
+                        "summary": "follow-redirects leaks Custom Authentication Headers to Cross-Domain Redirect Targets"
                     }
                 ]
             },

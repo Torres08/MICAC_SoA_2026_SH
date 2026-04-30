@@ -12,10 +12,10 @@
             "package": "follow-redirects",
             "version": "^1.15.11",
             "status": "ALIVE",
-            "risk_score_100": 48,
-            "cve_count": 4,
+            "risk_score_100": 55,
+            "cve_count": 5,
             "metrics": {
-                "days_since_last_commit": 71,
+                "days_since_last_commit": 3,
                 "maintainer_count": 30,
                 "open_issues": 17,
                 "is_deprecated": false,
@@ -28,12 +28,12 @@
             "package": "form-data",
             "version": "^4.0.5",
             "status": "ALIVE",
-            "risk_score_100": 32,
+            "risk_score_100": 33,
             "cve_count": 1,
             "metrics": {
-                "days_since_last_commit": 142,
+                "days_since_last_commit": 150,
                 "maintainer_count": 30,
-                "open_issues": 137,
+                "open_issues": 138,
                 "is_deprecated": false,
                 "github_repo": "form-data/form-data"
             },
@@ -49,7 +49,7 @@
             "metrics": {
                 "days_since_last_commit": 0,
                 "maintainer_count": 30,
-                "open_issues": 397,
+                "open_issues": 405,
                 "is_deprecated": false,
                 "github_repo": "vitest-dev/vitest"
             },
@@ -60,12 +60,12 @@
             "package": "body-parser",
             "version": "^2.2.2",
             "status": "ALIVE",
-            "risk_score_100": 36,
+            "risk_score_100": 37,
             "cve_count": 2,
             "metrics": {
-                "days_since_last_commit": 35,
+                "days_since_last_commit": 43,
                 "maintainer_count": 30,
-                "open_issues": 54,
+                "open_issues": 55,
                 "is_deprecated": false,
                 "github_repo": "expressjs/body-parser"
             },
@@ -79,7 +79,7 @@
             "risk_score_100": 15,
             "cve_count": 1,
             "metrics": {
-                "days_since_last_commit": 71,
+                "days_since_last_commit": 79,
                 "maintainer_count": 30,
                 "open_issues": 5,
                 "is_deprecated": false,
@@ -95,9 +95,9 @@
             "risk_score_100": 65,
             "cve_count": 5,
             "metrics": {
-                "days_since_last_commit": 1,
+                "days_since_last_commit": 9,
                 "maintainer_count": 30,
-                "open_issues": 209,
+                "open_issues": 214,
                 "is_deprecated": false,
                 "github_repo": "expressjs/express"
             },
@@ -108,12 +108,12 @@
             "package": "formidable",
             "version": "^3.2.4",
             "status": "ALIVE",
-            "risk_score_100": 27,
+            "risk_score_100": 19,
             "cve_count": 1,
             "metrics": {
-                "days_since_last_commit": 48,
+                "days_since_last_commit": 0,
                 "maintainer_count": 30,
-                "open_issues": 54,
+                "open_issues": 33,
                 "is_deprecated": false,
                 "github_repo": "node-formidable/formidable"
             },
@@ -124,12 +124,12 @@
             "package": "handlebars",
             "version": "^4.7.8",
             "status": "ALIVE",
-            "risk_score_100": 65,
+            "risk_score_100": 66,
             "cve_count": 19,
             "metrics": {
-                "days_since_last_commit": 16,
+                "days_since_last_commit": 24,
                 "maintainer_count": 30,
-                "open_issues": 106,
+                "open_issues": 110,
                 "is_deprecated": false,
                 "github_repo": "handlebars-lang/handlebars.js"
             },
@@ -140,10 +140,10 @@
             "package": "minimist",
             "version": "^1.2.8",
             "status": "ALIVE",
-            "risk_score_100": 29,
+            "risk_score_100": 30,
             "cve_count": 2,
             "metrics": {
-                "days_since_last_commit": 99,
+                "days_since_last_commit": 107,
                 "maintainer_count": 22,
                 "open_issues": 14,
                 "is_deprecated": false,
@@ -156,12 +156,12 @@
             "package": "multer",
             "version": "^2.1.1",
             "status": "ALIVE",
-            "risk_score_100": 66,
+            "risk_score_100": 67,
             "cve_count": 7,
             "metrics": {
-                "days_since_last_commit": 34,
+                "days_since_last_commit": 42,
                 "maintainer_count": 30,
-                "open_issues": 252,
+                "open_issues": 255,
                 "is_deprecated": false,
                 "github_repo": "expressjs/multer"
             },
@@ -177,7 +177,7 @@
             "metrics": {
                 "days_since_last_commit": 0,
                 "maintainer_count": 30,
-                "open_issues": 613,
+                "open_issues": 625,
                 "is_deprecated": false,
                 "github_repo": "microsoft/playwright"
             },
@@ -191,7 +191,7 @@
             "risk_score_100": 35,
             "cve_count": 2,
             "metrics": {
-                "days_since_last_commit": 4,
+                "days_since_last_commit": 3,
                 "maintainer_count": 30,
                 "open_issues": 601,
                 "is_deprecated": false,
@@ -209,7 +209,7 @@
             "metrics": {
                 "days_since_last_commit": 0,
                 "maintainer_count": 30,
-                "open_issues": 397,
+                "open_issues": 405,
                 "is_deprecated": false,
                 "github_repo": "vitest-dev/vitest"
             },
@@ -223,7 +223,7 @@
             "risk_score_100": 100,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 142,
+                "days_since_last_commit": 151,
                 "maintainer_count": 30,
                 "open_issues": 1,
                 "is_deprecated": true,
@@ -239,7 +239,7 @@
             "risk_score_100": 3,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 24,
+                "days_since_last_commit": 32,
                 "maintainer_count": 4,
                 "open_issues": 7,
                 "is_deprecated": false,
@@ -255,7 +255,7 @@
             "risk_score_100": 15,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 1,
+                "days_since_last_commit": 0,
                 "maintainer_count": 30,
                 "open_issues": 765,
                 "is_deprecated": false,
@@ -271,7 +271,7 @@
             "risk_score_100": 15,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 1,
+                "days_since_last_commit": 0,
                 "maintainer_count": 30,
                 "open_issues": 765,
                 "is_deprecated": false,
@@ -287,9 +287,9 @@
             "risk_score_100": 15,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 0,
+                "days_since_last_commit": 1,
                 "maintainer_count": 30,
-                "open_issues": 172,
+                "open_issues": 173,
                 "is_deprecated": false,
                 "github_repo": "conventional-changelog/commitlint"
             },
@@ -303,9 +303,9 @@
             "risk_score_100": 15,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 0,
+                "days_since_last_commit": 1,
                 "maintainer_count": 30,
-                "open_issues": 172,
+                "open_issues": 173,
                 "is_deprecated": false,
                 "github_repo": "conventional-changelog/commitlint"
             },
@@ -319,9 +319,9 @@
             "risk_score_100": 15,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 0,
+                "days_since_last_commit": 2,
                 "maintainer_count": 30,
-                "open_issues": 105,
+                "open_issues": 103,
                 "is_deprecated": false,
                 "github_repo": "eslint/eslint"
             },
@@ -332,12 +332,12 @@
             "package": "@rollup/plugin-alias",
             "version": "^6.0.0",
             "status": "ALIVE",
-            "risk_score_100": 12,
+            "risk_score_100": 13,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 26,
+                "days_since_last_commit": 34,
                 "maintainer_count": 30,
-                "open_issues": 38,
+                "open_issues": 39,
                 "is_deprecated": false,
                 "github_repo": "rollup/plugins"
             },
@@ -348,12 +348,12 @@
             "package": "@rollup/plugin-babel",
             "version": "^7.0.0",
             "status": "ALIVE",
-            "risk_score_100": 12,
+            "risk_score_100": 13,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 26,
+                "days_since_last_commit": 34,
                 "maintainer_count": 30,
-                "open_issues": 38,
+                "open_issues": 39,
                 "is_deprecated": false,
                 "github_repo": "rollup/plugins"
             },
@@ -364,12 +364,12 @@
             "package": "@rollup/plugin-commonjs",
             "version": "^29.0.2",
             "status": "ALIVE",
-            "risk_score_100": 12,
+            "risk_score_100": 13,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 26,
+                "days_since_last_commit": 34,
                 "maintainer_count": 30,
-                "open_issues": 38,
+                "open_issues": 39,
                 "is_deprecated": false,
                 "github_repo": "rollup/plugins"
             },
@@ -380,12 +380,12 @@
             "package": "@rollup/plugin-json",
             "version": "^6.1.0",
             "status": "ALIVE",
-            "risk_score_100": 12,
+            "risk_score_100": 13,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 26,
+                "days_since_last_commit": 34,
                 "maintainer_count": 30,
-                "open_issues": 38,
+                "open_issues": 39,
                 "is_deprecated": false,
                 "github_repo": "rollup/plugins"
             },
@@ -396,12 +396,12 @@
             "package": "@rollup/plugin-node-resolve",
             "version": "^16.0.3",
             "status": "ALIVE",
-            "risk_score_100": 12,
+            "risk_score_100": 13,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 26,
+                "days_since_last_commit": 34,
                 "maintainer_count": 30,
-                "open_issues": 38,
+                "open_issues": 39,
                 "is_deprecated": false,
                 "github_repo": "rollup/plugins"
             },
@@ -412,12 +412,12 @@
             "package": "@rollup/plugin-terser",
             "version": "^1.0.0",
             "status": "ALIVE",
-            "risk_score_100": 12,
+            "risk_score_100": 13,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 26,
+                "days_since_last_commit": 34,
                 "maintainer_count": 30,
-                "open_issues": 38,
+                "open_issues": 39,
                 "is_deprecated": false,
                 "github_repo": "rollup/plugins"
             },
@@ -433,7 +433,7 @@
             "metrics": {
                 "days_since_last_commit": 0,
                 "maintainer_count": 30,
-                "open_issues": 397,
+                "open_issues": 405,
                 "is_deprecated": false,
                 "github_repo": "vitest-dev/vitest"
             },
@@ -447,7 +447,7 @@
             "risk_score_100": 24,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 483,
+                "days_since_last_commit": 491,
                 "maintainer_count": 14,
                 "open_issues": 16,
                 "is_deprecated": false,
@@ -463,9 +463,9 @@
             "risk_score_100": 34,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 573,
+                "days_since_last_commit": 581,
                 "maintainer_count": 30,
-                "open_issues": 48,
+                "open_issues": 49,
                 "is_deprecated": false,
                 "github_repo": "CookPete/auto-changelog"
             },
@@ -479,7 +479,7 @@
             "risk_score_100": 35,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 4592,
+                "days_since_last_commit": 4601,
                 "maintainer_count": 1,
                 "open_issues": 1,
                 "is_deprecated": false,
@@ -495,9 +495,9 @@
             "risk_score_100": 15,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 0,
+                "days_since_last_commit": 2,
                 "maintainer_count": 30,
-                "open_issues": 105,
+                "open_issues": 103,
                 "is_deprecated": false,
                 "github_repo": "eslint/eslint"
             },
@@ -508,10 +508,10 @@
             "package": "formdata-node",
             "version": "^6.0.3",
             "status": "ALIVE",
-            "risk_score_100": 17,
+            "risk_score_100": 18,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 310,
+                "days_since_last_commit": 318,
                 "maintainer_count": 15,
                 "open_issues": 2,
                 "is_deprecated": false,
@@ -524,12 +524,12 @@
             "package": "fs-extra",
             "version": "^11.3.4",
             "status": "ALIVE",
-            "risk_score_100": 5,
+            "risk_score_100": 6,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 35,
+                "days_since_last_commit": 43,
                 "maintainer_count": 30,
-                "open_issues": 12,
+                "open_issues": 13,
                 "is_deprecated": false,
                 "github_repo": "jprichardson/node-fs-extra"
             },
@@ -543,7 +543,7 @@
             "risk_score_100": 20,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 527,
+                "days_since_last_commit": 535,
                 "maintainer_count": 17,
                 "open_issues": 0,
                 "is_deprecated": false,
@@ -556,12 +556,12 @@
             "package": "globals",
             "version": "^17.4.0",
             "status": "ALIVE",
-            "risk_score_100": 5,
+            "risk_score_100": 3,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 38,
+                "days_since_last_commit": 4,
                 "maintainer_count": 30,
-                "open_issues": 11,
+                "open_issues": 10,
                 "is_deprecated": false,
                 "github_repo": "sindresorhus/globals"
             },
@@ -575,7 +575,7 @@
             "risk_score_100": 13,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 58,
+                "days_since_last_commit": 66,
                 "maintainer_count": 30,
                 "open_issues": 34,
                 "is_deprecated": false,
@@ -591,7 +591,7 @@
             "risk_score_100": 16,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 19,
+                "days_since_last_commit": 27,
                 "maintainer_count": 30,
                 "open_issues": 103,
                 "is_deprecated": false,
@@ -604,12 +604,12 @@
             "package": "lint-staged",
             "version": "^16.4.0",
             "status": "ALIVE",
-            "risk_score_100": 11,
+            "risk_score_100": 10,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 0,
+                "days_since_last_commit": 2,
                 "maintainer_count": 30,
-                "open_issues": 37,
+                "open_issues": 36,
                 "is_deprecated": false,
                 "github_repo": "lint-staged/lint-staged"
             },
@@ -623,7 +623,7 @@
             "risk_score_100": 28,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 684,
+                "days_since_last_commit": 692,
                 "maintainer_count": 15,
                 "open_issues": 29,
                 "is_deprecated": false,
@@ -639,7 +639,7 @@
             "risk_score_100": 9,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 29,
+                "days_since_last_commit": 37,
                 "maintainer_count": 30,
                 "open_issues": 25,
                 "is_deprecated": false,
@@ -657,7 +657,7 @@
             "metrics": {
                 "days_since_last_commit": 0,
                 "maintainer_count": 30,
-                "open_issues": 1479,
+                "open_issues": 1459,
                 "is_deprecated": false,
                 "github_repo": "prettier/prettier"
             },
@@ -668,10 +668,10 @@
             "package": "pretty-bytes",
             "version": "^7.1.0",
             "status": "ALIVE",
-            "risk_score_100": 10,
+            "risk_score_100": 11,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 199,
+                "days_since_last_commit": 207,
                 "maintainer_count": 19,
                 "open_issues": 0,
                 "is_deprecated": false,
@@ -687,7 +687,7 @@
             "risk_score_100": 20,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 2114,
+                "days_since_last_commit": 2122,
                 "maintainer_count": 7,
                 "open_issues": 3,
                 "is_deprecated": false,
@@ -703,7 +703,7 @@
             "risk_score_100": 5,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 85,
+                "days_since_last_commit": 93,
                 "maintainer_count": 21,
                 "open_issues": 2,
                 "is_deprecated": false,
@@ -719,7 +719,7 @@
             "risk_score_100": 36,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 4383,
+                "days_since_last_commit": 4391,
                 "maintainer_count": 1,
                 "open_issues": 4,
                 "is_deprecated": false,
@@ -735,7 +735,7 @@
             "risk_score_100": 22,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 1671,
+                "days_since_last_commit": 1679,
                 "maintainer_count": 5,
                 "open_issues": 7,
                 "is_deprecated": false,
@@ -751,7 +751,7 @@
             "risk_score_100": 7,
             "cve_count": 0,
             "metrics": {
-                "days_since_last_commit": 38,
+                "days_since_last_commit": 47,
                 "maintainer_count": 30,
                 "open_issues": 18,
                 "is_deprecated": false,
@@ -769,7 +769,7 @@
             "metrics": {
                 "days_since_last_commit": 0,
                 "maintainer_count": 30,
-                "open_issues": 5013,
+                "open_issues": 5025,
                 "is_deprecated": false,
                 "github_repo": "microsoft/TypeScript"
             },
