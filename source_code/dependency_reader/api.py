@@ -81,10 +81,11 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Dependency Vulnerability Reader API",
+    title="Ship Happens - Dependency Scanner API",
     description="Fetch and scan GitHub repository dependencies for vulnerabilities.",
     version="1.0.0",
     lifespan=lifespan,
+    root_path="/api"
     # Disable auto-generated docs in production if needed:
     # docs_url=None, redoc_url=None,
 )
