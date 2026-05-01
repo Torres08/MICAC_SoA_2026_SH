@@ -65,8 +65,159 @@ body {
     margin-top: 30px;
     text-align: left;
     background: rgba(255,255,255,0.1);
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
-    max-height: 400px;
+    max-height: 280px;
     overflow-y: auto;
+}
+#downloadBtn {
+    margin-top: 16px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #19c37d;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#downloadBtn:hover {
+    background: #14a86a;
+}
+
+.hidden {
+    display: none;
+}
+
+.dashboard {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.gauge-card {
+    background: rgba(0, 0, 0, 0.55);
+    padding: 25px;
+    border-radius: 16px;
+    max-width: 520px;
+    margin: 0 auto 25px auto;
+    backdrop-filter: blur(8px);
+}
+
+.gauge {
+    width: 260px;
+    height: 130px;
+    background: conic-gradient(
+        from 270deg,
+        #19c37d 0deg 60deg,
+        #f5c542 60deg 120deg,
+        #ff4d4d 120deg 180deg,
+        transparent 180deg 360deg
+    );
+    border-radius: 260px 260px 0 0;
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.needle {
+    position: absolute;
+    width: 4px;
+    height: 110px;
+    background: white;
+    left: 128px;
+    bottom: 0;
+    transform-origin: bottom center;
+    transform: rotate(-90deg);
+    transition: transform 1s ease-in-out;
+    z-index: 3;
+}
+
+.gauge-cover {
+    width: 180px;
+    height: 90px;
+    background: rgba(15, 15, 20, 0.95);
+    border-radius: 180px 180px 0 0;
+    position: absolute;
+    left: 40px;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.gauge-fill {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: transparent;
+    border-radius: 50%;
+    transform-origin: center;
+    transform: rotate(0deg);
+    transition: transform 1s ease-in-out;
+}
+
+.gauge-fill::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 110px;
+    background: white;
+    left: 128px;
+    top: 20px;
+    transform-origin: bottom center;
+}
+
+.gauge-cover {
+    width: 180px;
+    height: 90px;
+    background: rgba(15, 15, 20, 0.95);
+    border-radius: 180px 180px 0 0;
+    position: absolute;
+    left: 40px;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#gaugeFill {
+    z-index: 2;
+}
+
+#scoreValue {
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.repo-status {
+    font-weight: bold;
+    color: #ff4d4d;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.summary-card {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 18px;
+    border-radius: 14px;
+    backdrop-filter: blur(8px);
+}
+
+.summary-card h3 {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.summary-card p {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px 0 0;
 }

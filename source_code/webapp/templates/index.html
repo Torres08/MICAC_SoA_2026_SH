@@ -33,7 +33,52 @@
             </button>
         </div>
 
-        <div id="result" class="result-box"></div>
+
+        <div id="dashboard" class="dashboard hidden">
+
+    <div class="gauge-card">
+        <h2>Repository Risk Score</h2>
+
+     <div class="gauge">
+        <div class="needle" id="needle"></div>
+
+        <div class="gauge-cover">
+            <span id="scoreValue">0</span>
+            <small>/100</small>
+        </div>
+    </div>
+
+        <p id="repoStatus" class="repo-status"></p>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <h3>Total Dependencies</h3>
+            <p id="totalDeps">0</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>Vulnerable Found</h3>
+            <p id="vulnFound">0</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>Zombies Found</h3>
+            <p id="zombiesFound">0</p>
+        </div>
+    </div>
+
+</div>
+
+<button id="downloadBtn" onclick="downloadJson()" style="display: none;">
+    Download JSON Report
+</button>
+
+<div id="result" class="result-box"></div>
+        </div>
+        <button id="downloadBtn" onclick="downloadJson()" style="display: none;">
+        Download JSON Report
+        </button>
 
     </div>
 
