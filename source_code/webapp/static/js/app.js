@@ -6,7 +6,12 @@ async function analyzeRepo() {
     const downloadBtn = document.getElementById("downloadBtn");
     const dashboard = document.getElementById("dashboard");
 
-    resultBox.innerHTML = "Analyzing repository...";
+    resultBox.innerHTML = `
+        <div style="text-align:center; padding: 20px;">
+            <p>Analyzing repository (this may take a minute)...</p>
+            <div class="loader"></div>
+        </div>
+    `;
     downloadBtn.style.display = "none";
     dashboard.classList.add("hidden");
     latestScanResult = null;
@@ -45,7 +50,17 @@ function renderDashboard(data) {
     const score = scanInfo.repo_risk_score_100 || 0;
 
     document.getElementById("scoreValue").textContent = score;
-    document.getElementById("repoStatus").textContent = scanInfo.repo_status;
+    const statusEl = document.getElementById("repoStatus");
+    statusEl.textContent = scanInfo.repo_status;
+
+    if (scanInfo.repo_status.startsWith("SAFE")) {
+        statusEl.style.color = "#19c37d"; // Green
+    } else if (scanInfo.repo_status.startsWith("WARNING")) {
+        statusEl.style.color = "#f5c542"; // Yellow
+    } else {
+        statusEl.style.color = "#ff4d4d"; // Red
+    }
+
     document.getElementById("totalDeps").textContent = scanInfo.total_dependencies;
     document.getElementById("vulnFound").textContent = scanInfo.vulnerable_found;
     document.getElementById("zombiesFound").textContent = scanInfo.zombies_found;

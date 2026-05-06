@@ -519,7 +519,7 @@ def display_dependencies(result: dict) -> None:
     print(f"{'─' * 50}\n")
 
 
-def generate_output(result: dict, path: str = "output.json") -> None:
+def generate_output(result: dict, path: str = "outputs/output.json") -> None:
     """
     Saves the full result dict (source file + dependencies) to `path` as JSON.
     """

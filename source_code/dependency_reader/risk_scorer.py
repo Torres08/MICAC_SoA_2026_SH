@@ -11,25 +11,34 @@ bus factor
 """
 
 import json
+import os
+
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config", "heuristic_config.json")
+try:
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        CONFIG = json.load(f)
+except Exception:
+    CONFIG = {}
+
+WEIGHTS = CONFIG.get("weights", {})
+ZOMBIE_RULES = CONFIG.get("zombie_rules", {})
+THRESHOLDS = CONFIG.get("thresholds", {})
 
 def calculate_package_risk(package_name: str, version: str, cve_details: list, vitals: dict) -> dict:
     """
     HEURISTIC SCORING LOGIC
     =======================
-    This calculates the overall risk score based on the parameters defined in the academic guidelines.
+    This calculates the overall risk score based on the parameters defined in the config.json.
     
     1. Security Risk: Measured by active CVEs from the OSV API.
     2. Maintenance Risk: Measured by vitality metrics from GitHub API.
-
-    Rules implemented below:
-    - If cve_count > 0 → Base Risk is HIGH
-    - If days_since_last_commit > 365 AND open_issues_count > 50 AND maintainer_count <= 1 → Status is ZOMBIE
-    - If is_deprecated is True → Status is ZOMBIE
-    - If ZOMBIE AND cve_count > 0 → CRITICAL RISK (Active vulnerabilities with no one to fix them)
     """
 
     # Extract clean baseline metrics
     cve_count = len(cve_details)
+    
+    cve_penalty = WEIGHTS.get("cve_penalty_per_vuln", 10)
+    cve_max = WEIGHTS.get("cve_max", 50)
     
     # Handle packages where GitHub enrichment failed
     if "error" in vitals:
@@ -37,7 +46,7 @@ def calculate_package_risk(package_name: str, version: str, cve_details: list, v
             "package": package_name,
             "version": version,
             "status": "UNKNOWN (Vitality Fetch Failed)",
-            "risk_score_100": min(cve_count * 10, 50),  # Fallback score based only on CVEs
+            "risk_score_100": min(cve_count * cve_penalty, cve_max),
             "cve_count": cve_count,
             "metrics": vitals,
             "risk_level": "HIGH" if cve_count > 0 else "LOW",
@@ -54,17 +63,13 @@ def calculate_package_risk(package_name: str, version: str, cve_details: list, v
     if is_deprecated:
         numeric_score = 100
     else:
-        # Vulnerabilities: 10 points per CVE (Max 50)
-        cve_score = min(cve_count * 10, 50)
+        cve_score = min(cve_count * cve_penalty, cve_max)
         
-        # Inactivity: Up to 20 points for 1 year of inactivity
-        inactivity_score = min((days_old / 365.0) * 20, 20)
+        inactivity_score = min((days_old / 365.0) * WEIGHTS.get("inactivity_penalty_per_year", 20), WEIGHTS.get("inactivity_max", 20))
         
-        # Bus Factor: 15 points if 1 or 0 maintainers
-        bus_score = 15 if maintainers <= 1 else 0
+        bus_score = WEIGHTS.get("bus_factor_penalty", 15) if maintainers <= ZOMBIE_RULES.get("bus_factor_max", 1) else 0
         
-        # Neglect: Up to 15 points for >= 50 open issues
-        neglect_score = min((open_issues / 50.0) * 15, 15)
+        neglect_score = min((open_issues / 50.0) * WEIGHTS.get("neglect_penalty_per_50_issues", 15), WEIGHTS.get("neglect_max", 15))
         
         numeric_score = int(cve_score + inactivity_score + bus_score + neglect_score)
         numeric_score = min(numeric_score, 100)
@@ -74,8 +79,7 @@ def calculate_package_risk(package_name: str, version: str, cve_details: list, v
     
     if is_deprecated:
         is_zombie = True
-    elif (days_old > 365) and (open_issues > 50) and (maintainers <= 1):
-        # The Bus factor died and nobody has touched accumulated bugs in a year
+    elif (days_old > ZOMBIE_RULES.get("inactivity_days_threshold", 365)) and (open_issues > ZOMBIE_RULES.get("open_issues_threshold", 50)) and (maintainers <= ZOMBIE_RULES.get("bus_factor_max", 1)):
         is_zombie = True
 
     status = "ZOMBIE" if is_zombie else "ALIVE"
@@ -156,13 +160,16 @@ def generate_zombie_report(repository_url: str, scanned_deps: dict, enriched_vit
     analysis.sort(key=lambda x: risk_order.get(x["risk_level"], 4))
 
     # Calculate overall repo score (A repository is only as secure as its weakest link)
-    repo_score = 0
+    max_score = 0
+    weighted_mean_score = 0
+    
     if analysis:
-        repo_score = max(pkg["risk_score_100"] for pkg in analysis)
+        max_score = max(pkg["risk_score_100"] for pkg in analysis)
+        weighted_mean_score = int(sum(pkg["risk_score_100"] for pkg in analysis) / len(analysis))
         
-    if repo_score >= 70:
+    if max_score >= THRESHOLDS.get("dangerous_min", 70):
         repo_status = "DANGEROUS (High probability of supply chain attack)"
-    elif repo_score >= 40:
+    elif max_score >= THRESHOLDS.get("warning_min", 40):
         repo_status = "WARNING (Approaching technical debt limits)"
     else:
         repo_status = "SAFE (Healthy dependency tree)"
@@ -173,14 +180,15 @@ def generate_zombie_report(repository_url: str, scanned_deps: dict, enriched_vit
             "total_dependencies": total_deps,
             "zombies_found": total_zombies,
             "vulnerable_found": len(report_data.get("vulnerable_packages", [])),
-            "repo_risk_score_100": repo_score,
+            "repo_risk_score_100": max_score,
+            "weighted_mean_score_100": weighted_mean_score,
             "repo_status": repo_status
         },
         "analysis": analysis
     }
 
 
-def save_zombie_report_json(report: dict, filepath: str = "zombie_report.json"):
+def save_zombie_report_json(report: dict, filepath: str = "outputs/zombie_report.json"):
     """Writes the final output as JSON."""
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=4)

@@ -60,14 +60,16 @@ from concurrent.futures import ThreadPoolExecutor
 # ── Load environment ────────────────────────────────────────────────────────
 load_dotenv()
 
-OUTPUT_FILE = Path(__file__).parent / "output.json"
+OUTPUT_FILE = Path(__file__).parent / "outputs" / "output.json"
 
 # CORS: read from .env — defaults to localhost only for safety
 _raw_origins = os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000")
 ALLOWED_ORIGINS = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
 # Thread pool for running the blocking scan in the background
-_executor = ThreadPoolExecutor(max_workers=2)
+# We use max_workers=10 because vitality enrichment is highly I/O-bound (network calls).
+# Increasing this resolves the concurrency bottleneck when scanning large repos.
+_executor = ThreadPoolExecutor(max_workers=10)
 
 # ── Rate limiter ─────────────────────────────────────────────────────────────
 limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
@@ -122,6 +124,8 @@ class ScanRequest(BaseModel):
     @classmethod
     def validate_github_url(cls, v: str) -> str:
         v = v.strip()
+        if "gitlab.com" in v:
+            raise ValueError("GitLab repositories are not currently supported. Please provide a GitHub URL.")
         if not v.startswith("https://github.com/"):
             raise ValueError("Only public GitHub URLs are supported (https://github.com/...).")
         parts = v.rstrip("/").split("/")
@@ -172,6 +176,9 @@ def _run_zombie_scan(repo_url: str) -> dict:
     if not validate_repository_link(repo_url):
         raise ValueError("Repository validation failed.")
 
+    # FORCE CRASH TO TEST TASK 4
+    # raise Exception("Simulated Internal Server Error: Database timeout!")
+
     metadata = fetch_repository_metadata(repo_url)
     if metadata is None:
         raise RuntimeError("Could not fetch repository metadata.")
@@ -191,7 +198,7 @@ def _run_zombie_scan(repo_url: str) -> dict:
     report = generate_zombie_report(repo_url, scan_result, vitals_map)
     
     # Save the output file
-    target_path = str(Path(__file__).parent / "zombie_report.json")
+    target_path = str(Path(__file__).parent / "outputs" / "zombie_report.json")
     save_zombie_report_json(report, target_path)
     
     return report
@@ -241,7 +248,7 @@ async def get_zombie_report(request: Request):
     """
     Returns the contents of the last generated zombie_report.json (Phase 2).
     """
-    zombie_file = Path(__file__).parent / "zombie_report.json"
+    zombie_file = Path(__file__).parent / "outputs" / "zombie_report.json"
     if not zombie_file.exists():
         raise HTTPException(
             status_code=404,
@@ -269,7 +276,8 @@ async def post_zombie_scan(request: Request, body: ScanRequest):
     except RuntimeError as exc:
         raise HTTPException(status_code=502, detail=str(exc))
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc))
+        print(f"[ERROR] Internal scan error: {exc}")
+        raise HTTPException(status_code=500, detail="An internal error occurred. Please try again.")
 
     return JSONResponse(content=result)
 
