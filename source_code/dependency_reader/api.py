@@ -67,7 +67,9 @@ _raw_origins = os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000")
 ALLOWED_ORIGINS = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
 # Thread pool for running the blocking scan in the background
-_executor = ThreadPoolExecutor(max_workers=2)
+# We use max_workers=10 because vitality enrichment is highly I/O-bound (network calls).
+# Increasing this resolves the concurrency bottleneck when scanning large repos.
+_executor = ThreadPoolExecutor(max_workers=10)
 
 # ── Rate limiter ─────────────────────────────────────────────────────────────
 limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
