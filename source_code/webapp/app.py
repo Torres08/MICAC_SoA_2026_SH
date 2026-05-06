@@ -1,9 +1,12 @@
+import os
 from flask import Flask, render_template, request, jsonify
 import requests
 
 app = Flask(__name__)
 
-SCANNER_API = "http://127.0.0.1:8000/zombie-scan"
+# In Docker: SCANNER_API=http://backend:8000/zombie-scan (set in docker-compose.yml)
+# Locally:   falls back to 127.0.0.1 for direct python app.py usage
+SCANNER_API = os.environ.get("SCANNER_API", "http://127.0.0.1:8000/zombie-scan")
 
 
 @app.route("/")

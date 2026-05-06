@@ -11,3 +11,5 @@ dependency_reader/.env
 # Python caches
 __pycache__/
 *.py[cod]
+.structurizr/
+source_code/deployment/certs/

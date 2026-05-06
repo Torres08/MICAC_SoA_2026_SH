@@ -1,0 +1,20 @@
+# Build context is source_code/ (one level up from this file)
+FROM python:3.13-slim
+
+# Security: run as non-root user
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+
+WORKDIR /app
+
+# Install Flask + Gunicorn
+RUN pip install --no-cache-dir flask requests gunicorn
+
+# Copy frontend source
+COPY webapp/ .
+
+USER appuser
+
+EXPOSE 5000
+
+# 3 gunicorn workers — mirrors the setup.sh systemd service config
+CMD ["gunicorn", "--workers", "3", "--bind", "0.0.0.0:5000", "app:app"]

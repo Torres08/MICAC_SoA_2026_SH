@@ -1,0 +1,129 @@
+================================================================================
+SHIP HAPPENS — PROTOTYPE INSTRUCTIONS
+Team: SH (MICAC SoA 2026)
+================================================================================
+
+REQUIREMENTS
+------------
+- Linux (Ubuntu/Debian recommended)
+- Python 3.10+
+- Git
+- sudo access (for Nginx and systemd setup)
+- A GitHub Personal Access Token (optional but recommended — boosts API limit
+  from 60 to 5,000 requests/hour)
+  Create one at: https://github.com/settings/tokens
+  No scopes needed — leave all checkboxes unchecked.
+
+
+STEP 1 — Clone the repository
+------------------------------
+    git clone https://gitlab.mif.vu.lt/<repo-path>/micac_soa_2026_sh.git
+    cd micac_soa_2026_sh
+
+
+STEP 2 — Run the setup script
+------------------------------
+The setup script installs all dependencies, configures Nginx as a reverse
+proxy, and registers the Scanner API and Web App as systemd services.
+
+    chmod +x setup.sh
+    sudo ./setup.sh
+
+During the script you will be prompted to enter your GitHub token.
+You can press Enter to skip it and run without a token.
+
+
+STEP 3 — Verify the services are running
+------------------------------------------
+    sudo systemctl status scanner   # FastAPI backend (port 8000)
+    sudo systemctl status website   # Flask frontend  (port 5000)
+    sudo systemctl status nginx     # Reverse proxy   (port 80)
+
+If any service failed, check its logs:
+    sudo journalctl -u scanner -f
+    sudo journalctl -u website -f
+
+
+STEP 4 — Use the tool
+-----------------------
+Open your browser and go to:
+
+    http://<your-server-ip>/
+
+You will see a form. Paste any public GitHub repository URL and click Scan.
+
+Example URLs to try:
+    https://github.com/axios/axios
+    https://github.com/boto/boto3
+    https://github.com/ansible/ansible
+
+The tool will:
+  1. Fetch the repository's dependency file (requirements.txt, package.json, etc.)
+  2. Check each dependency for known CVEs via the OSV database
+  3. Analyse package vitality (last commit date, contributors, open issues)
+  4. Return a risk score (0-100+) per dependency and a final grade:
+       SAFE      — no zombie or vulnerable packages found
+       WARNING   — some packages show signs of abandonment
+       DANGEROUS — critical CVEs or highly abandoned packages detected
+
+
+STEP 5 (Optional) — Use the API directly
+------------------------------------------
+The Scanner API has interactive docs at:
+
+    http://<your-server-ip>/api/docs
+
+Available endpoints:
+
+    POST /scan          Run a CVE-only scan
+    POST /zombie-scan   Run the full Zombie Package analysis (recommended)
+    GET  /report        Return the last saved CVE report
+    GET  /zombie-report Return the last saved Zombie Report
+    GET  /health        Health check
+
+Example with curl:
+
+    curl -X POST http://<your-server-ip>/api/zombie-scan \
+         -H "Content-Type: application/json" \
+         -d '{"repo_url": "https://github.com/axios/axios"}'
+
+
+TROUBLESHOOTING
+---------------
+- "Scanner API unreachable" in the browser
+    -> Check: sudo systemctl restart scanner
+
+- GitHub rate limit errors (HTTP 403)
+    -> Add your GitHub token to the .env file:
+       echo "GITHUB_TOKEN=ghp_yourtoken" >> .env
+       sudo systemctl restart scanner
+
+- Port 80 already in use
+    -> sudo systemctl stop apache2   (if Apache is running)
+       sudo systemctl restart nginx
+
+- Re-run setup from scratch
+    -> sudo systemctl stop scanner website nginx
+       sudo ./setup.sh
+
+
+DIRECTORY STRUCTURE
+-------------------
+micac_soa_2026_sh/
+  setup.sh                        Automated deployment script
+  source_code/
+    dependency_reader/            Scanner API (FastAPI)
+      api.py                      REST endpoints
+      utils.py                    Dependency parser + GitHub fetcher
+      vulnerability_checker.py    CVE lookup via OSV API
+      vitality_enricher.py        Package health metrics
+      risk_scorer.py              Zombie risk scoring
+    webapp/                       Web frontend (Flask)
+      app.py                      Routes and API proxy
+      templates/index.html        UI
+  project_management/             Architecture diagrams and reports
+
+
+================================================================================
+END OF INSTRUCTIONS
+================================================================================
