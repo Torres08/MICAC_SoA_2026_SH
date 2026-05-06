@@ -23,7 +23,7 @@ def analyze():
         response = requests.post(
             SCANNER_API,
             json={"repo_url": repo},
-            timeout=600
+            timeout=int(os.environ.get("SCANNER_TIMEOUT", 600))
         )
 
         return jsonify(response.json())

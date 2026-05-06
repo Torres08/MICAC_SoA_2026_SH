@@ -60,7 +60,7 @@ from concurrent.futures import ThreadPoolExecutor
 # ── Load environment ────────────────────────────────────────────────────────
 load_dotenv()
 
-OUTPUT_FILE = Path(__file__).parent / "output.json"
+OUTPUT_FILE = Path(__file__).parent / "outputs" / "output.json"
 
 # CORS: read from .env — defaults to localhost only for safety
 _raw_origins = os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000")
@@ -191,7 +191,7 @@ def _run_zombie_scan(repo_url: str) -> dict:
     report = generate_zombie_report(repo_url, scan_result, vitals_map)
     
     # Save the output file
-    target_path = str(Path(__file__).parent / "zombie_report.json")
+    target_path = str(Path(__file__).parent / "outputs" / "zombie_report.json")
     save_zombie_report_json(report, target_path)
     
     return report
@@ -241,7 +241,7 @@ async def get_zombie_report(request: Request):
     """
     Returns the contents of the last generated zombie_report.json (Phase 2).
     """
-    zombie_file = Path(__file__).parent / "zombie_report.json"
+    zombie_file = Path(__file__).parent / "outputs" / "zombie_report.json"
     if not zombie_file.exists():
         raise HTTPException(
             status_code=404,
