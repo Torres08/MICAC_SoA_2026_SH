@@ -160,13 +160,16 @@ def generate_zombie_report(repository_url: str, scanned_deps: dict, enriched_vit
     analysis.sort(key=lambda x: risk_order.get(x["risk_level"], 4))
 
     # Calculate overall repo score (A repository is only as secure as its weakest link)
-    repo_score = 0
+    max_score = 0
+    weighted_mean_score = 0
+    
     if analysis:
-        repo_score = max(pkg["risk_score_100"] for pkg in analysis)
+        max_score = max(pkg["risk_score_100"] for pkg in analysis)
+        weighted_mean_score = int(sum(pkg["risk_score_100"] for pkg in analysis) / len(analysis))
         
-    if repo_score >= THRESHOLDS.get("dangerous_min", 70):
+    if max_score >= THRESHOLDS.get("dangerous_min", 70):
         repo_status = "DANGEROUS (High probability of supply chain attack)"
-    elif repo_score >= THRESHOLDS.get("warning_min", 40):
+    elif max_score >= THRESHOLDS.get("warning_min", 40):
         repo_status = "WARNING (Approaching technical debt limits)"
     else:
         repo_status = "SAFE (Healthy dependency tree)"
@@ -177,7 +180,8 @@ def generate_zombie_report(repository_url: str, scanned_deps: dict, enriched_vit
             "total_dependencies": total_deps,
             "zombies_found": total_zombies,
             "vulnerable_found": len(report_data.get("vulnerable_packages", [])),
-            "repo_risk_score_100": repo_score,
+            "repo_risk_score_100": max_score,
+            "weighted_mean_score_100": weighted_mean_score,
             "repo_status": repo_status
         },
         "analysis": analysis

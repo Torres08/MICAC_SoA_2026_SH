@@ -128,7 +128,8 @@ def main() -> None:
     print(f"  Vulnerable Packages found: {vulnerabilities_count}")
     print(f"  Zombie (Unmaintained) Packages found: {zombies_count}")
     print(f"  ───────────────────────────────────────────────────")
-    print(f"  OVERALL REPOSITORY SECURITY SCORE : {repo_score} / 100")
+    print(f"  PEAK REPOSITORY SECURITY SCORE    : {repo_score} / 100  (Weakest Link)")
+    print(f"  WEIGHTED MEAN SECURITY SCORE      : {report['scan_info'].get('weighted_mean_score_100', 0)} / 100  (Overall Trend)")
     print(f"  STATUS                            : {repo_status}")
     print(f"  ───────────────────────────────────────────────────")
 

@@ -122,6 +122,8 @@ class ScanRequest(BaseModel):
     @classmethod
     def validate_github_url(cls, v: str) -> str:
         v = v.strip()
+        if "gitlab.com" in v:
+            raise ValueError("GitLab repositories are not currently supported. Please provide a GitHub URL.")
         if not v.startswith("https://github.com/"):
             raise ValueError("Only public GitHub URLs are supported (https://github.com/...).")
         parts = v.rstrip("/").split("/")
@@ -171,6 +173,9 @@ def _run_zombie_scan(repo_url: str) -> dict:
 
     if not validate_repository_link(repo_url):
         raise ValueError("Repository validation failed.")
+
+    # FORCE CRASH TO TEST TASK 4
+    # raise Exception("Simulated Internal Server Error: Database timeout!")
 
     metadata = fetch_repository_metadata(repo_url)
     if metadata is None:
@@ -269,7 +274,8 @@ async def post_zombie_scan(request: Request, body: ScanRequest):
     except RuntimeError as exc:
         raise HTTPException(status_code=502, detail=str(exc))
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc))
+        print(f"[ERROR] Internal scan error: {exc}")
+        raise HTTPException(status_code=500, detail="An internal error occurred. Please try again.")
 
     return JSONResponse(content=result)
 
