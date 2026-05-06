@@ -35,6 +35,14 @@
             </button>
         </div>
 
+        <div class="sample-repos" style="margin-top: 15px; font-size: 0.9em; text-align: center; color: rgba(255, 255, 255, 0.7);">
+            Try a sample: 
+            <a href="#" onclick="document.getElementById('repoInput').value='https://github.com/boto/boto3'; return false;" style="color: #4CAF50; text-decoration: underline; margin-left: 5px;">Boto3 (Healthy)</a> | 
+            <a href="#" onclick="document.getElementById('repoInput').value='https://github.com/django/django'; return false;" style="color: #FFC107; text-decoration: underline; margin-left: 5px;">Django (Warning)</a> | 
+            <a href="#" onclick="document.getElementById('repoInput').value='https://github.com/ansible/ansible'; return false;" style="color: #FF5252; text-decoration: underline; margin-left: 5px;">Ansible (Dangerous)</a> | 
+            <a href="#" onclick="document.getElementById('repoInput').value='https://github.com/axios/axios'; return false;" style="color: #FF5252; text-decoration: underline; margin-left: 5px;">Axios (High Risk)</a>
+        </div>
+
 
         <div id="dashboard" class="dashboard hidden">
 

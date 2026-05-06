@@ -176,7 +176,14 @@ def fetch_github_vital_signs(repo_name: str) -> dict:
     if response and response.status_code == 200:
         contrib_data = response.json()
         if isinstance(contrib_data, list):
-            vitals["maintainer_count"] = len(contrib_data)
+            human_contributors = 0
+            for contributor in contrib_data:
+                ctype = contributor.get("type", "User")
+                login = contributor.get("login", "")
+                # Ignore GitHub bots and dependabot
+                if ctype != "Bot" and not login.endswith("[bot]"):
+                    human_contributors += 1
+            vitals["maintainer_count"] = human_contributors
 
     return vitals
 
