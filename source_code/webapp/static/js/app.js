@@ -26,10 +26,21 @@ async function analyzeRepo() {
         });
 
         const data = await response.json();
-
-        if (data.error || data.detail) {
+        if (data.detail[0].type == "value_error") {
             resultBox.innerHTML =
-                "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+                "<pre>" + "✗  Invalid URL format. Expected: https://github.com/<owner>/<repo>" + "</pre>";
+            return;
+        }
+
+        if (data.detail) {
+            resultBox.innerHTML =
+                "<pre>" + data.detail + "</pre>";
+            return;
+        }
+
+        if (data.error) {
+            resultBox.innerHTML =
+                "<pre>" + data.error + "</pre>";
             return;
         }
 
