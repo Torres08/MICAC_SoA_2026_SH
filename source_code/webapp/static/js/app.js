@@ -25,17 +25,17 @@ function setRepo(url) {
 }
 
 function showLoader() {
-    document.getElementById('loaderSection').classList.remove('hidden');
+    document.getElementById('loader').classList.remove('hidden');
     document.getElementById('results').classList.add('hidden');
     document.getElementById('errorBox').classList.add('hidden');
-    document.getElementById('analyzeBtn').disabled = true;
-    document.getElementById('analyzeBtn').textContent = 'Analyzing…';
+    const btn = document.querySelector('.input-group button');
+    if (btn) { btn.disabled = true; btn.textContent = 'Scanning…'; }
 }
 
 function hideLoader() {
-    document.getElementById('loaderSection').classList.add('hidden');
-    document.getElementById('analyzeBtn').disabled = false;
-    document.getElementById('analyzeBtn').textContent = 'Analyze';
+    document.getElementById('loader').classList.add('hidden');
+    const btn = document.querySelector('.input-group button');
+    if (btn) { btn.disabled = false; btn.textContent = 'Analyze'; }
 }
 
 function showError(msg) {
@@ -106,11 +106,11 @@ function renderAll(data) {
     const statusEl = document.getElementById('repoStatus');
     statusEl.textContent = info.repo_status;
     if (info.repo_status.startsWith('SAFE')) {
-        statusEl.style.color = '#19c37d';
+        statusEl.style.color = '#18b870';
     } else if (info.repo_status.startsWith('WARNING')) {
-        statusEl.style.color = '#f5c542';
+        statusEl.style.color = '#d4900a';
     } else {
-        statusEl.style.color = '#ff4d4d';
+        statusEl.style.color = '#e03030';
     }
 
     document.getElementById('meanScore').textContent =
@@ -145,26 +145,27 @@ function renderPackageList(deps, analysis) {
     container.innerHTML = '';
 
     if (!Object.keys(deps).length) {
-        container.innerHTML = '<p style="color:#6b7280;font-size:13px">No packages detected.</p>';
+        container.innerHTML = '<p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-dim)">No packages detected.</p>';
         return;
     }
 
-    // Build a quick lookup: packageName → analysis entry
     const analysisMap = {};
     analysis.forEach(a => { analysisMap[a.package] = a; });
 
     Object.entries(deps).forEach(([name, version]) => {
         const entry = analysisMap[name];
         const isZombie = entry && entry.status === 'ZOMBIE';
-        const isVuln = entry && entry.risk_level && ['CRITICAL', 'HIGH', 'MEDIUM'].includes(entry.risk_level);
+        const isVuln   = entry && entry.cve_count && entry.cve_count > 0;
+        const hasEntry = !!entry;
 
+        let modClass  = 'pkg-chip--safe';
         let badgeHtml = '';
-        if (isZombie) badgeHtml += '<span class="badge zombie">ZOMBIE</span>';
-        if (isVuln) badgeHtml += '<span class="badge vuln">VULN</span>';
-        if (!isZombie && !isVuln && entry) badgeHtml += '<span class="badge clean">OK</span>';
+        if (isZombie) { modClass = 'pkg-chip--zombie'; badgeHtml = '<span class="badge zombie">ZOMBIE</span>'; }
+        if (isVuln)   { modClass = 'pkg-chip--vuln';   badgeHtml = '<span class="badge vuln">VULN</span>'; }
+        if (!isZombie && !isVuln && hasEntry) badgeHtml = '<span class="badge clean">OK</span>';
 
         const chip = document.createElement('div');
-        chip.className = 'pkg-chip';
+        chip.className = `pkg-chip ${modClass}`;
         chip.innerHTML = `
             <span class="pkg-name">${escHtml(name)}</span>
             <span class="pkg-ver">${escHtml(version || 'any')}</span>
