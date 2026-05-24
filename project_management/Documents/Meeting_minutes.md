@@ -1,4 +1,4 @@
-# 📋 Meeting Minutes
+# Meeting Minutes
 
 ## March 31, 2026 
 **Primary Objective:** Project Initialization and Methodology Definition

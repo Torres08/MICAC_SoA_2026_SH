@@ -49,10 +49,10 @@ Each issue must:
 
 We use the following four labels to categorize tasks:
 
-- 💜 `Documentation`
-- 💙 `Code Feature`
-- 💚 `Research`
-- 💛 `Others`
+- `Documentation`
+- `Code Feature`
+- `Research`
+- `Others`
 
 These labels allow us to monitor workload distribution and maintain transparency regarding each member’s contributions.
 

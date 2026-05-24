@@ -1,6 +1,24 @@
 # MICAC_SoA_2026_SH
 ### Project Name: Ship Happens
-### Authors and Acknowledgment
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Let's_Encrypt-003A70?style=for-the-badge&logo=letsencrypt&logoColor=white" alt="Let's Encrypt" />
+  <img src="https://img.shields.io/badge/DuckDNS-91BE3F?style=for-the-badge" alt="DuckDNS" />
+  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" alt="Swagger" />
+  <img src="https://img.shields.io/badge/GitHub_API-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub API" />
+  <img src="https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=white" alt="Gunicorn" />
+  <img src="https://img.shields.io/badge/CVE_API-OSV.dev-informational?style=for-the-badge" alt="OSV.dev" />
+</p>
+
+### Authors 
 - Ariana Sofia Domingues Vaz Silva Alves
 - Greivin Sanchez Garita
 - Juan Luis Torres Ramos
@@ -16,117 +34,39 @@ To address this, the system implements a risk heuristic that evaluates every dep
 * **Community Health:** Assessing issue neglect as a lead indicator of package abandonment.
 
 A dependency is formally classified as a Zombie Package if it exceeds the 100-point risk threshold or carries an explicit deprecation flag. Consequently, the final repository grade (**Safe**, **Warning**, or **Dangerous**) is dictated by the highest risk score found within its dependency tree.
+## Demo Presentation
+Below is a demonstration of how the application evaluates dependencies and detects zombie packages:
+
+![Demo Presentation](project_management/Images/ship-gift.gif)
 
 ## Repository Structure
 The repository is organized into the following areas:
 
 ### Source Code
-* `dependency_reader/`: Core backend analysis engine.
-* `webapp/`: Frontend interface for data visualization.
+* `source_code/`:
+  * `dependency_reader/`: Core backend analysis engine.
+  * `webapp/`: Frontend interface for data visualization.
+  * `deployment/`: Configuration and docker files to deploy the application stack (Nginx, Certbot, etc.) via Docker Compose.
 
 ### Project Management
-* `Docs/Workflow.md`: Documentation of Git protocols and team collaboration standards.
-* `Docs/Meeting_minutes.md`: Chronological record of project sessions and decisions.
+All project management files, reports, diagrams, and documentation are organized as follows:
+* `project_management/`:
+  * `Documents/`: Project reports, meeting minutes, and collaboration standards:
+    * `Workflow.md`: Git protocols and collaboration standards.
+    * `Meeting_minutes.md`: Chronological record of team meetings and decisions.
+    * `architecture_report.md`: Complete architectural report.
+    * `methodology.md`: Description of the evaluation methodology.
+  * `Images/`: Screenshots, sketches, and the demo presentation GIF.
+  * `Diagrams/`: Architecture C4 diagrams, flowcharts, and Structurizr workspace files:
+    * `ProjectOverview.png`, `WebInterfaceDiagram.png`, `APIFlowDiagram.png`: Rendered C4 diagrams.
+    * `API_flowchart.drawio`, `API_flowchart.png`: Scanner API design flowchart.
+    * `script_flowchart.drawio`, `script_flowchart.png`: Execution flow of setup script.
+    * `workspace.dsl`: Structurizr workspace DSL defining the C4 model.
+    * `workspace.json`: Compiled workspace JSON.
+    * `docker-compose.yml`: Docker Compose file to run the Structurizr local viewer.
 
 ### Documentation
 The report for this project is maintained and updated via Overleaf [here](https://www.overleaf.com/1311323137tcwpffgfycgw#b24c23).
 
-## Prerequisites
-
-Before deploying to another computer, ensure the following are installed:
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/) (included in Docker Desktop)
-- Make sure ports `8080` and `443` are free.
-
 ## Deployment Instructions
-
-### Docker Deployment
-
-This directory contains the necessary configuration files to deploy the Dependency Reader stack using Docker Compose.
-
-Self signed with HTTPS instead of HTTP with port 8080 
-
-The stack consists of three services:
-* **Backend:** FastAPI scanner service (`api.py`) running on Python Uvicorn.
-* **Frontend:** Flask web application (`app.py`) running on Gunicorn.
-* **Nginx:** Reverse proxy that routes traffic to the frontend and backend, and handles HTTPS.
-
-1. **Clone the Repository**  
-   Copy the entire `micac_soa_2026_sh` project folder to the target computer.
-    ```bash
-    git clone https://git.mif.vu.lt/juto2015/micac_soa_2026_sh.git
-    ```
-
-2. **Configure Environment Variables**  
-   Create or modify the `.env` file in the root of the project (two folders up from this deployment folder: `../../.env`).
-   ```env
-   GITHUB_TOKEN=your_github_personal_access_token
-   ALLOWED_ORIGINS=http://localhost:8080,https://localhost
-   ```
-   *(Note: The `GITHUB_TOKEN` is highly recommended to avoid GitHub API rate limits.)*
-
-3. **Navigate to the Deployment Folder**  
-   Open a terminal and navigate to this folder:
-   ```bash
-   cd source_code/deployment
-   ```
-
-4. **Generate SSL Certificates (Required for HTTPS)**  
-   Since we use HTTPS, you must generate a new self-signed certificate on the target machine:
-   ```bash
-   mkdir -p certs
-   openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -subj "/CN=localhost"
-   ```
-
-5. **Start the Stack**  
-   Run the following command to build and start the containers in detached mode:
-   ```bash
-   docker compose up -build -d
-   ```
-
-6. **Access the Application**  
-   To find your machine's IP address, run:
-   ```bash
-   hostname -I | awk '{print $1}'
-   ```
-   The application will be available securely at that IP address:
-   - **Website:** `https://<YOUR_IP_ADDRESS>/`
-   - **API Docs:** `https://<YOUR_IP_ADDRESS>/api/docs`
-   
-   *Note: Because you are using a self-signed certificate, your browser will show a "Not Secure" warning. Click **Advanced -> Proceed (Accept Risk)** to view the page.*
-
-7. **Usage**
-    The application frontend will show a page like the one below: 
-    ![app_frontend](project_management/Images/frontend_page.png)
-    In the search bar the user can easily copy and paste one of the following url samples to test the application: 
-    - https://github.com/boto/boto3  
-    - https://github.com/axios/axios 
-    - https://github.com/gin-gonic/gin 
-    - https://github.com/ansible/ansible 
-
-    Or use one of the suggested ones bellow the "Analyze Repository" blue button.
-
-    After clicking the "Analyze Repository" button the user will get a summary of the repository health status.
-
-    ![report_result](project_management/Images/report_result.png)
-    
-    Furthemore, the user will be able to download a .json file report with the findings.
-    
-    ![json_report](project_management/Images/json_reportDownload.png)
-
-
- 
-## Useful Commands
-
-- **View Logs:**
-  ```bash
-  docker compose logs -f
-  ```
-- **Stop the Stack:**
-  ```bash
-  docker compose down
-  ```
-- **Rebuild after Code Changes:**
-  ```bash
-  docker compose up --build -d
-  ```
+For complete and detailed deployment instructions, including how to configure Let's Encrypt certificates automatically via Certbot and DuckDNS, please check the [App Deployment & HTTPS Configuration Guide](source_code/deployment/README.md).

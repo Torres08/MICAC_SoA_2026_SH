@@ -1,67 +1,114 @@
-# Docker Deployment
+# App Deployment & HTTPS Configuration Guide
 
-This directory contains the necessary configuration files to deploy the Dependency Reader stack using Docker Compose.
+This guide describes how to deploy the Dependency Reader application on a new machine and configure secure HTTPS access using **DuckDNS**, **Let's Encrypt**, and **Nginx** directly within Docker Compose.
 
-Self signed with HTTPS instead of HTTP with port 8080 
+---
 
-The stack consists of three services:
-1. **Backend:** FastAPI scanner service (`api.py`) running on Python Uvicorn.
-2. **Frontend:** Flask web application (`app.py`) running on Gunicorn.
-3. **Nginx:** Reverse proxy that routes traffic to the frontend and backend, and handles HTTPS.
+## How It Works (The Tech Stack)
+
+When you deploy this application, several components work together automatically to make the connection secure:
+
+1. **DuckDNS (Dynamic DNS)**
+   - Normal IP addresses (like `123.45.67.89`) are hard to remember. DuckDNS gives you a free subdomain (like `yourhost.duckdns.org`) that points to your machine's public IP address.
+   
+2. **HTTPS & SSL Certificate**
+   - HTTPS encrypts all communication between the user's browser and your server, making sure no one can spy on or tamper with the data.
+   - To enable HTTPS, you need a trusted SSL certificate. **Let's Encrypt** provides these certificate files for free.
+   
+3. **Certbot (Integrated in Docker Compose)**
+   - Certbot is the client tool used to request certificates from Let's Encrypt.
+   - To prove you own the domain, Let's Encrypt requires a DNS validation test (the `dns-01` challenge). Instead of doing this manually, Certbot runs inside its own Docker Compose container and automatically updates your DuckDNS settings.
+   - Once Let's Encrypt verifies the DNS settings, it issues the certificates and saves them to a shared directory.
+   
+4. **Nginx (Reverse Proxy)**
+   - Nginx is the web server facing the public internet. It listens for incoming HTTP (port `80`) and HTTPS (port `443`) requests.
+   - Nginx automatically redirects any unsecured HTTP requests to secure HTTPS.
+   - Nginx uses your Let's Encrypt certificates to secure the connection, decrypts the request, and proxies (forwards) it internally to the frontend (Flask) or backend (FastAPI) Docker services.
+
+---
+
+## The DuckDNS Verification Commands Explained
+
+We need to update DuckDNS records during Let's Encrypt verification. The `certbot` service inside `docker-compose.yml` runs these validation and cleanup commands inline:
+
+### 1. Verification Hook (Authentication)
+When Certbot requests a certificate, Let's Encrypt gives it a temporary verification token (stored in the `$CERTBOT_VALIDATION` variable). Certbot uses `curl` to update your DuckDNS domain text (`TXT`) record with this value:
+```bash
+curl -s "https://www.duckdns.org/update?domains=<YOUR_SUBDOMAIN>&token=<YOUR_DUCKDNS_TOKEN>&txt=<CERTBOT_VALIDATION_TOKEN>"
+```
+*After this command runs, Certbot pauses for 30 seconds to allow the DNS record changes to propagate worldwide so Let's Encrypt can verify it.*
+
+### 2. Cleanup Hook
+Once Let's Encrypt successfully reads the TXT record and issues the certificates, Certbot runs a second command to clear the TXT record to keep it clean:
+```bash
+curl -s "https://www.duckdns.org/update?domains=<YOUR_SUBDOMAIN>&token=<YOUR_DUCKDNS_TOKEN>&txt=&clear=true"
+```
+
+---
 
 ## Prerequisites
 
-Before deploying to another computer, ensure the following are installed:
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/) (included in Docker Desktop)
-- Make sure ports `8080` and `443` are free.
+Before starting, make sure the target machine has:
+- **Docker** and **Docker Compose** installed.
+- Ports **80** and **443** free and open to the internet.
+- A **DuckDNS account** with a registered subdomain and your API Token.
 
-## Deployment Instructions
+---
 
-1. **Clone the Repository**  
-   Copy the entire `micac_soa_2026_sh` project folder to the target computer.
+## Step-by-Step Deployment Instructions
 
-2. **Configure Environment Variables**  
-   Create or modify the `.env` file in the root of the project (two folders up from this deployment folder: `../../.env`).
-   ```env
-   GITHUB_TOKEN=your_github_personal_access_token
-   ALLOWED_ORIGINS=http://localhost:8080,https://localhost
-   ```
-   *(Note: The `GITHUB_TOKEN` is highly recommended to avoid GitHub API rate limits.)*
+### Step 1: Clone the Repository
+Copy the entire `micac_soa_2026_sh` project folder to the target machine.
 
-3. **Navigate to the Deployment Folder**  
-   Open a terminal and navigate to this folder:
-   ```bash
-   cd source_code/deployment
-   ```
+### Step 2: Configure Environment Variables
+In the root of the project, create or update the `.env` file (located two levels up from this folder):
 
-4. **Generate SSL Certificates (Required for HTTPS)**  
-   Since we use HTTPS, you must generate a new self-signed certificate on the target machine:
-   ```bash
-   mkdir -p certs
-   openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -subj "/CN=localhost"
-   ```
+```env
+GITHUB_TOKEN=your_github_token_here
+ALLOWED_ORIGINS=https://your-subdomain.duckdns.org:14361
+DUCKDNS_TOKEN=your_duckdns_token_here
+DOMAIN=your-subdomain.duckdns.org
+EMAIL=your-email@example.com
+```
+*Note: Make sure to replace `your-subdomain.duckdns.org`, `your_duckdns_token_here`, and `your-email@example.com` with your actual information.*
 
-5. **Start the Stack**  
-   Run the following command to build and start the containers in detached mode:
-   ```bash
-   docker compose up -build -d
-   ```
+### Step 3: Update the Nginx Configuration
+Ensure the domain name in `source_code/deployment/nginx.conf` matches your domain. Open the file and update the following lines if they don't match:
 
-6. **Access the Application**  
-   To find your machine's IP address, run:
-   ```bash
-   hostname -I | awk '{print $1}'
-   ```
-   The application will be available securely at that IP address:
-   - **Website:** `https://<YOUR_IP_ADDRESS>:5000/`
-   - **API Docs:** `https://<YOUR_IP_ADDRESS>:5000/api/docs`
-   
-   *Note: Because you are using a self-signed certificate, your browser will show a "Not Secure" warning. Click **Advanced -> Proceed (Accept Risk)** to view the page.*
+- **Line 3 & 11:** Update `server_name` to your domain:
+  ```nginx
+  server_name your-subdomain.duckdns.org;
+  ```
+- **Line 13 & 14:** Update the certificate path folder names to match your domain name:
+  ```nginx
+  ssl_certificate /etc/nginx/certs/live/your-subdomain.duckdns.org/fullchain.pem;
+  ssl_certificate_key /etc/nginx/certs/live/your-subdomain.duckdns.org/privkey.pem;
+  ```
 
-## Useful Commands
+### Step 4: Start the Docker Compose Stack
+Deploy the services in the background using Docker Compose:
 
-- **View Logs:**
+```bash
+docker compose up --build -d
+```
+
+### What happens when you run this command:
+1. Docker Compose builds the frontend and backend services.
+2. The `certbot` container starts up, automatically runs the inline validation/cleanup `curl` commands to obtain your Let's Encrypt SSL certificates, and stores them in `./certs`.
+3. Once the `certbot` service completes successfully, the `nginx` container starts up automatically, loads the new certificates, and begins serving secure traffic.
+
+---
+
+## Step 5: Access the Application
+The application is now running securely under HTTPS:
+- **Frontend (Website):** `https://your-subdomain.duckdns.org:14361` (or your configured port mapping)
+- **Backend API Docs:** `https://your-subdomain.duckdns.org:14361/api/docs`
+
+---
+
+## Helpful Operations Commands
+
+- **Check Logs:**
   ```bash
   docker compose logs -f
   ```
@@ -69,7 +116,7 @@ Before deploying to another computer, ensure the following are installed:
   ```bash
   docker compose down
   ```
-- **Rebuild after Code Changes:**
+- **Rebuild Services (after code changes):**
   ```bash
   docker compose up --build -d
   ```

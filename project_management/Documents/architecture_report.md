@@ -37,7 +37,7 @@ Splitting them means the web page stays responsive even while the scanner is wor
 
 > *What the system does and who/what it talks to.*
 
-![Project Overview](diagram_project_overview.png)
+![Project Overview](../Diagrams/ProjectOverview.png)
 
 ### Reading this diagram
 
@@ -59,7 +59,7 @@ Splitting them means the web page stays responsive even while the scanner is wor
 
 > *The internal pieces and how they connect.*
 
-![Web Interface](diagram_web_interface.png)
+![Web Interface](../Diagrams/WebInterfaceDiagram.png)
 
 ### Reading this diagram
 
@@ -89,18 +89,9 @@ Nginx sits in front of everything so:
 
 > *What happens inside the Scanner API when you submit a repo URL.*
 
-![API Flow](diagram_api_flow.png)
+![API Flow](../Diagrams/APIFlowDiagram.png)
 
 ### Reading this diagram
-
-The Scanner API runs a **4-step pipeline**, left to right:
-
-```
-Router → Utils → Vuln Checker → Vitality Enricher → Risk Scorer
-           ↓            ↓                ↓
-       GitHub API     OSV API      Package Registries
-                                   + GitHub API
-```
 
 | Step | Component | What it does |
 |---|---|---|
@@ -138,5 +129,5 @@ The system is built around three principles:
 
 ---
 
-*Diagrams generated with [Structurizr](https://structurizr.com) using the C4 Model.*  
-*DSL source: `workspace.dsl` · Run diagrams locally: `docker compose up -d` → http://localhost:8080*
+*Diagrams generated with [Structurizr](https://playground.structurizr.com/) using the C4 Model.*  
+*DSL source: `../Diagrams/workspace.dsl`*

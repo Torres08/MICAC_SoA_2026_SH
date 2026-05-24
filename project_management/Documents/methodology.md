@@ -14,7 +14,7 @@ security databases. The interaction between the auditor, the internal tool, and 
 sources, specifically the GitHub platform for project activity and the Open Source Vulnerabilities
 database, is illustrated in Figure 1.
 
-![Figure 1: Project Overview Diagram](diagram_project_overview.png)
+![Figure 1: Project Overview Diagram](../Diagrams/ProjectOverview.png)
 *Figure 1: Project Overview Diagram*
 
 ---
@@ -23,7 +23,7 @@ To ensure the tool is accessible both as a desktop application and through a web
 design is partitioned into functional units. This structural division is further detailed in Figure 2,
 which depicts how the visual dashboard interacts with the underlying processing services.
 
-![Figure 2: Web Interface Diagram](diagram_web_interface.png)
+![Figure 2: Web Interface Diagram](../Diagrams/WebInterfaceDiagram.png)
 *Figure 2: Web Interface Diagram*
 
 ---
@@ -33,7 +33,7 @@ governed by a dedicated communication bridge. As shown in Figure 3, this compone
 the internal lifecycle of a scan, from the initial reading of project manifest files to the simultaneous
 collection of security data.
 
-![Figure 3: API Flow Diagram](diagram_api_flow.png)
+![Figure 3: API Flow Diagram](../Diagrams/APIFlowDiagram.png)
 *Figure 3: API Flow Diagram*
 
 ---

@@ -6,51 +6,64 @@ Team: SH (MICAC SoA 2026)
 REQUIREMENTS
 ------------
 - Linux (Ubuntu/Debian recommended)
-- Python 3.10+
-- Git
-- sudo access (for Nginx and systemd setup)
-- A GitHub Personal Access Token (optional but recommended — boosts API limit
-  from 60 to 5,000 requests/hour)
+- Docker
+- Docker Compose
+- A DuckDNS account (with a registered subdomain and API Token)
+- A GitHub Personal Access Token (boosts API limit from 60 to 5,000 requests/hour)
   Create one at: https://github.com/settings/tokens
   No scopes needed — leave all checkboxes unchecked.
 
 
 STEP 1 — Clone the repository
 ------------------------------
-    git clone https://gitlab.mif.vu.lt/<repo-path>/micac_soa_2026_sh.git
+    git clone https://git.mif.vu.lt/juto2015/micac_soa_2026_sh.git
     cd micac_soa_2026_sh
 
 
-STEP 2 — Run the setup script
-------------------------------
-The setup script installs all dependencies, configures Nginx as a reverse
-proxy, and registers the Scanner API and Web App as systemd services.
+STEP 2 — Configure Environment Variables
+-----------------------------------------
+Create a `.env` file in the root of the project:
 
-    chmod +x setup.sh
-    sudo ./setup.sh
+    GITHUB_TOKEN=your_github_personal_access_token
+    ALLOWED_ORIGINS=https://your-subdomain.duckdns.org:14361
+    DUCKDNS_TOKEN=your_duckdns_token_here
+    DOMAIN=your-subdomain.duckdns.org
+    EMAIL=your-email@example.com
 
-During the script you will be prompted to enter your GitHub token.
-You can press Enter to skip it and run without a token.
+*(Note: Replace the domain, token, and email values with your actual DuckDNS configurations.)*
 
 
-STEP 3 — Verify the services are running
+STEP 3 — Start the Docker Stack
+--------------------------------
+Navigate to the deployment directory and start the services using Docker Compose:
+
+    cd source_code/deployment
+    docker compose up --build -d
+
+This command will:
+1. Build the backend and frontend containers.
+2. Spin up Certbot to authenticate via DuckDNS and generate a Let's Encrypt SSL certificate.
+3. Launch Nginx as a secure reverse proxy once SSL certificates are ready.
+
+
+STEP 4 — Verify the services are running
 ------------------------------------------
-    sudo systemctl status scanner   # FastAPI backend (port 8000)
-    sudo systemctl status website   # Flask frontend  (port 5000)
-    sudo systemctl status nginx     # Reverse proxy   (port 80)
+Check the status of the Docker containers:
 
-If any service failed, check its logs:
-    sudo journalctl -u scanner -f
-    sudo journalctl -u website -f
+    docker compose ps
+
+Verify container logs to trace any setup issues:
+
+    docker compose logs -f
 
 
-STEP 4 — Use the tool
+STEP 5 — Use the tool
 -----------------------
-Open your browser and go to:
+Open your browser and navigate to:
 
-    http://<your-server-ip>/
+    https://your-subdomain.duckdns.org/
 
-You will see a form. Paste any public GitHub repository URL and click Scan.
+Paste a public GitHub repository URL and click "Analyze Repository".
 
 Example URLs to try:
     https://github.com/axios/axios
@@ -61,20 +74,16 @@ The tool will:
   1. Fetch the repository's dependency file (requirements.txt, package.json, etc.)
   2. Check each dependency for known CVEs via the OSV database
   3. Analyse package vitality (last commit date, contributors, open issues)
-  4. Return a risk score (0-100+) per dependency and a final grade:
-       SAFE      — no zombie or vulnerable packages found
-       WARNING   — some packages show signs of abandonment
-       DANGEROUS — critical CVEs or highly abandoned packages detected
+  4. Return a risk score (0-100+) per dependency and a final grade (SAFE / WARNING / DANGEROUS)
 
 
-STEP 5 (Optional) — Use the API directly
+STEP 6 (Optional) — Use the API directly
 ------------------------------------------
-The Scanner API has interactive docs at:
+The Scanner API has interactive documentation available at:
 
-    http://<your-server-ip>/api/docs
+    https://your-subdomain.duckdns.org/api/docs
 
 Available endpoints:
-
     POST /scan          Run a CVE-only scan
     POST /zombie-scan   Run the full Zombie Package analysis (recommended)
     GET  /report        Return the last saved CVE report
@@ -83,35 +92,41 @@ Available endpoints:
 
 Example with curl:
 
-    curl -X POST http://<your-server-ip>/api/zombie-scan \
+    curl -X POST https://your-subdomain.duckdns.org/api/zombie-scan \
          -H "Content-Type: application/json" \
          -d '{"repo_url": "https://github.com/axios/axios"}'
 
 
 TROUBLESHOOTING
 ---------------
-- "Scanner API unreachable" in the browser
-    -> Check: sudo systemctl restart scanner
-
 - GitHub rate limit errors (HTTP 403)
-    -> Add your GitHub token to the .env file:
-       echo "GITHUB_TOKEN=ghp_yourtoken" >> .env
-       sudo systemctl restart scanner
+    -> Add or update the GITHUB_TOKEN inside `.env` and restart:
+       docker compose down && docker compose up --build -d
 
-- Port 80 already in use
-    -> sudo systemctl stop apache2   (if Apache is running)
-       sudo systemctl restart nginx
+- SSL Verification/Certbot issues
+    -> View Certbot logs specifically:
+       docker compose logs certbot
 
-- Re-run setup from scratch
-    -> sudo systemctl stop scanner website nginx
-       sudo ./setup.sh
+- Restart/Rebuild stack after changes
+    -> Rebuild all services:
+       docker compose up --build -d
+
+- Stop the Stack:
+    -> Stop and remove all containers:
+       docker compose down
 
 
 DIRECTORY STRUCTURE
 -------------------
 micac_soa_2026_sh/
-  setup.sh                        Automated deployment script
+  README.md                       Main documentation
+  SH_instructions.txt             Actual deployment instructions
   source_code/
+    deployment/                   Docker deployment files
+      docker-compose.yml          Docker Compose stack setup
+      nginx.conf                  Nginx reverse proxy configuration
+      Dockerfile.backend          Backend container specification
+      Dockerfile.frontend         Frontend container specification
     dependency_reader/            Scanner API (FastAPI)
       api.py                      REST endpoints
       utils.py                    Dependency parser + GitHub fetcher
@@ -121,8 +136,7 @@ micac_soa_2026_sh/
     webapp/                       Web frontend (Flask)
       app.py                      Routes and API proxy
       templates/index.html        UI
-  project_management/             Architecture diagrams and reports
-
+  project_management/             Project documents (in Documents/), diagrams/workspace (in Diagrams/), images & gifs (in Images/)
 
 ================================================================================
 END OF INSTRUCTIONS

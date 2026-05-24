@@ -55,11 +55,9 @@ body {
     /* Structural metal deck grid */
     background-image:
         linear-gradient(var(--deck-grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--deck-grid) 1px, transparent 1px),
-        url("../images/background.jpg");
-    background-size: 48px 48px, 48px 48px, cover;
+        linear-gradient(90deg, var(--deck-grid) 1px, transparent 1px);
+    background-size: 48px 48px, 48px 48px;
     background-attachment: fixed;
-    background-blend-mode: normal, normal, multiply;
     min-height: 100vh;
 }
 
