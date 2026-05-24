@@ -255,22 +255,36 @@ def parse_file_content(file_name: str, content: str) -> dict | None:
 # ── Individual Parsers ───────────────────────────────────────────────────────
 
 def _parse_requirements_txt(content: str) -> dict:
-    """Parses pip requirements.txt — supports ==, >=, <=, ~=, !=, >, <."""
+    """Parses pip requirements.txt — supports ==, >=, <=, ~=, !=, >, <, and -e git+... installs."""
     deps = {}
     for raw_line in content.splitlines():
         line = raw_line.strip()
-        # Skip comments, blank lines, options (-r, -e, --index-url, …)
-        if not line or line.startswith(("#", "-", "!")):
+        if not line or line.startswith(("#", "!")):
             continue
+
+        # Handle editable installs BEFORE stripping #comments,
+        # because the egg name lives in the #egg= fragment
+        if line.startswith("-e "):
+            egg_match = re.search(r"#egg=([A-Za-z0-9_.\-]+)", line)
+            if egg_match:
+                deps[egg_match.group(1)] = "editable"
+            continue
+
+        # Skip other options like -r, --index-url, etc.
+        if line.startswith("-"):
+            continue
+
         # Strip inline comments
         line = line.split("#")[0].strip()
+
         # Extract name and version specifier
-        match = re.match(r"^([A-Za-z0-9_.\-\[\]]+)\s*([><=!~,\s0-9.*]+)?", line)
+        match = re.match(r"^([A-Za-z0-9_.\-\[\]]+)\s*([><!=~,\s0-9.*]+)?", line)
         if match:
             name = match.group(1).strip()
             version = (match.group(2) or "").strip()
             deps[name] = version
     return deps
+
 
 
 def _parse_package_json(content: str) -> dict:

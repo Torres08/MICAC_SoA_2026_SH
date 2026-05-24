@@ -11,8 +11,8 @@
   },
   "zombie_rules": {
     "inactivity_days_threshold": 365,
-    "open_issues_threshold": 50,
-    "bus_factor_max": 1
+    "open_issues_threshold": 5,
+    "bus_factor_max": 10
   },
   "thresholds": {
     "dangerous_min": 70,

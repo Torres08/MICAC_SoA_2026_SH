@@ -12,6 +12,9 @@ RUN pip install --no-cache-dir flask requests gunicorn
 # Copy frontend source
 COPY webapp/ .
 
+# Fix for gunicorn permission error with /nonexistent home directory
+ENV HOME=/tmp
+
 USER appuser
 
 EXPOSE 5000
