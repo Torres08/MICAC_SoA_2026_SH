@@ -2,99 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ship Happens</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
-<link rel="icon" type="image/png" href="/static/images/favicon.png">
-<link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ship Happens — Supply Chain Security</title>
+    <meta name="description" content="Analyze open-source GitHub repositories for vulnerable dependencies, zombie packages, and supply chain risks.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 <div class="overlay">
+    <div class="page-wrapper">
 
-    <div class="container">
+        <!-- ─── HERO ──────────────────────────────────────── -->
+        <header class="hero">
+            <div class="hero-badge">Supply Chain Security Scanner</div>
+            <h1 class="title">Ship Happens</h1>
+            <p class="subtitle">Analyze open-source repositories for vulnerable dependencies and zombie packages.</p>
 
-        <h1 class="title">
-            Ship Happens
-        </h1>
+            <div class="input-group">
+                <input type="text" id="repoInput" placeholder="https://github.com/owner/repo" autocomplete="off">
+                <button id="analyzeBtn" onclick="analyzeRepo()">Analyze</button>
+            </div>
 
-        <p class="subtitle">
-            Analyze open-source repositories for vulnerable dependencies and zombie packages.
-        </p>
+            <div class="sample-links">
+                Try a sample:
+                <a href="#" class="chip safe"    onclick="setRepo('https://github.com/boto/boto3')">Boto3</a>
+                <a href="#" class="chip safe"    onclick="setRepo('https://github.com/django/django')">Django</a>
+                <a href="#" class="chip warning" onclick="setRepo('https://github.com/Miserlou/Zappa')">Zappa</a>
+                <a href="#" class="chip danger"  onclick="setRepo('https://github.com/ansible/ansible')">Ansible</a>
+            </div>
+        </header>
 
-        <div class="form-box">
-            <input
-                type="text"
-                id="repoInput"
-                placeholder="Enter GitHub Repository URL"
-            >
-
-            <button onclick="analyzeRepo()">
-                Analyze Repository
-            </button>
+        <!-- ─── LOADER ───────────────────────────────────── -->
+        <div id="loaderSection" class="loader-section hidden">
+            <p class="loader-text">Analyzing repository — this may take a minute...</p>
+            <div class="loader-bar"><div class="loader-fill"></div></div>
         </div>
 
-        <div class="sample-repos" style="margin-top: 15px; font-size: 0.9em; text-align: center; color: rgba(255, 255, 255, 0.7);">
-            Try a sample: 
-            <a href="#" onclick="document.getElementById('repoInput').value='https://github.com/boto/boto3'; return false;" style="color: #4CAF50; text-decoration: underline; margin-left: 5px;">Boto3 (Healthy)</a> | 
-            <a href="#" onclick="document.getElementById('repoInput').value='https://github.com/django/django'; return false;" style="color: #4CAF50; text-decoration: underline; margin-left: 5px;">Django (Healthy)</a> | 
-            <a href="#" onclick="document.getElementById('repoInput').value='https://github.com/psf/requests'; return false;" style="color: #FFC107; text-decoration: underline; margin-left: 5px;">Requests (Warning)</a> | 
-            <a href="#" onclick="document.getElementById('repoInput').value='https://github.com/ansible/ansible'; return false;" style="color: #FF5252; text-decoration: underline; margin-left: 5px;">Ansible (Dangerous)</a>
+        <!-- ─── ERROR BOX ─────────────────────────────────── -->
+        <div id="errorBox" class="error-box hidden"></div>
+
+        <!-- ─── RESULTS ──────────────────────────────────── -->
+        <div id="results" class="results hidden">
+
+            <!-- Score + Summary Row -->
+            <section class="score-row">
+                <div class="gauge-card">
+                    <div class="gauge-label">Repository Risk Score</div>
+                    <div class="gauge">
+                        <div class="needle" id="needle"></div>
+                        <div class="gauge-cover">
+                            <span id="scoreValue">0</span>
+                            <small>/100</small>
+                        </div>
+                    </div>
+                    <p id="repoStatus" class="repo-status"></p>
+                    <p id="meanScore"  class="mean-score"></p>
+                </div>
+
+                <div class="summary-col">
+                    <div class="meta-pill" id="sourceFilePill"></div>
+                    <div class="summary-cards">
+                        <div class="summary-card">
+                            <span class="card-icon"></span>
+                            <p id="totalDeps" class="card-value">0</p>
+                            <p class="card-label">Dependencies</p>
+                        </div>
+                        <div class="summary-card">
+                            <span class="card-icon"></span>
+                            <p id="vulnFound" class="card-value danger-text">0</p>
+                            <p class="card-label">Vulnerable</p>
+                        </div>
+                        <div class="summary-card">
+                            <span class="card-icon"></span>
+                            <p id="zombiesFound" class="card-value warning-text">0</p>
+                            <p class="card-label">Zombies</p>
+                        </div>
+                    </div>
+                    <button id="downloadBtn" onclick="downloadJson()" class="download-btn">Download JSON Report</button>
+                </div>
+            </section>
+
+            <section class="report-section">
+                <h2 class="section-title">Package List</h2>
+                <div id="packageList" class="package-grid"></div>
+            </section>
+
+            <!-- Vulnerability Report -->
+            <section class="report-section">
+                <h2 class="section-title">Vulnerability Report</h2>
+                <div id="vulnReport"></div>
+            </section>
+
+            <!-- Vitality Metrics -->
+            <section class="report-section">
+                <h2 class="section-title">Vitality Metrics</h2>
+                <div class="vitality-table-wrapper">
+                    <div id="vitalityTable"></div>
+                </div>
+            </section>
+
         </div>
 
-
-        <div id="dashboard" class="dashboard hidden">
-
-    <div class="gauge-card">
-        <h2>Repository Risk Score</h2>
-
-     <div class="gauge">
-        <div class="needle" id="needle"></div>
-
-        <div class="gauge-cover">
-            <span id="scoreValue">0</span>
-            <small>/100</small>
-        </div>
     </div>
-
-        <p id="repoStatus" class="repo-status"></p>
-    </div>
-
-    <div class="summary-grid">
-        <div class="summary-card">
-            <h3>Total Dependencies</h3>
-            <p id="totalDeps">0</p>
-        </div>
-
-        <div class="summary-card">
-            <h3>Vulnerable Found</h3>
-            <p id="vulnFound">0</p>
-        </div>
-
-        <div class="summary-card">
-            <h3>Zombies Found</h3>
-            <p id="zombiesFound">0</p>
-        </div>
-    </div>
-
-</div>
-
-<button id="downloadBtn" onclick="downloadJson()" style="display: none;">
-    Download JSON Report
-</button>
-
-<div id="result" class="result-box"></div>
-        </div>
-        <button id="downloadBtn" onclick="downloadJson()" style="display: none;">
-        Download JSON Report
-        </button>
-
-    </div>
-
 </div>
 
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-
 </body>
 </html>

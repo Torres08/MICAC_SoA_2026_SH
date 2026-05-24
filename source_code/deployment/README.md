@@ -54,8 +54,8 @@ Before deploying to another computer, ensure the following are installed:
    hostname -I | awk '{print $1}'
    ```
    The application will be available securely at that IP address:
-   - **Website:** `https://<YOUR_IP_ADDRESS>/`
-   - **API Docs:** `https://<YOUR_IP_ADDRESS>/api/docs`
+   - **Website:** `https://<YOUR_IP_ADDRESS>:5000/`
+   - **API Docs:** `https://<YOUR_IP_ADDRESS>:5000/api/docs`
    
    *Note: Because you are using a self-signed certificate, your browser will show a "Not Secure" warning. Click **Advanced -> Proceed (Accept Risk)** to view the page.*
 

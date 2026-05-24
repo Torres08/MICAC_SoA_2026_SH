@@ -82,7 +82,7 @@ def calculate_package_risk(package_name: str, version: str, cve_details: list, v
     elif (days_old > ZOMBIE_RULES.get("inactivity_days_threshold", 365)) and (open_issues > ZOMBIE_RULES.get("open_issues_threshold", 50)) and (maintainers <= ZOMBIE_RULES.get("bus_factor_max", 1)):
         is_zombie = True
 
-    status = "ZOMBIE" if is_zombie else "ALIVE"
+    status = "ZOMBIE" if is_zombie else "ACTIVE"
 
     # 3. Calculate Final Risk Level
     if is_zombie and cve_count > 0:
@@ -104,6 +104,7 @@ def calculate_package_risk(package_name: str, version: str, cve_details: list, v
         "status": status,
         "risk_score_100": numeric_score,
         "cve_count": cve_count,
+        "cve_details": cve_details,   # expose raw CVE list to frontend
         "metrics": {
             "days_since_last_commit": days_old,
             "maintainer_count": maintainers,
@@ -190,6 +191,8 @@ def generate_zombie_report(repository_url: str, scanned_deps: dict, enriched_vit
 
 def save_zombie_report_json(report: dict, filepath: str = "outputs/zombie_report.json"):
     """Writes the final output as JSON."""
+    import os
+    os.makedirs(os.path.dirname(os.path.abspath(filepath)), exist_ok=True)
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=4)
     print(f"✓ Zombie report saved directly to '{filepath}'")

@@ -16,17 +16,26 @@ def index():
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
-
     repo = request.json.get("repo")
 
     try:
-        response = requests.post(
+        resp = requests.post(
             SCANNER_API,
             json={"repo_url": repo},
             timeout=int(os.environ.get("SCANNER_TIMEOUT", 600))
         )
 
-        return jsonify(response.json())
+        data = resp.json()
+
+        # FastAPI validation errors return detail as a list of objects.
+        # Flatten it into a readable string so the frontend never sees [object Object].
+        if not resp.ok and isinstance(data.get("detail"), list):
+            msgs = [e.get("msg", str(e)) for e in data["detail"]]
+            # Strip FastAPI's "Value error, " prefix for cleaner display
+            clean = "; ".join(m.replace("Value error, ", "") for m in msgs)
+            data = {"detail": clean}
+
+        return jsonify(data), resp.status_code
 
     except Exception:
         return jsonify({"error": "Scanner API unreachable"}), 500

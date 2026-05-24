@@ -197,6 +197,10 @@ def _run_zombie_scan(repo_url: str) -> dict:
     # 3. Generate Zombie Report
     report = generate_zombie_report(repo_url, scan_result, vitals_map)
     
+    # Enrich report with source file info for the frontend
+    report["source_file"] = result.get("source_file", "unknown")
+    report["dependencies"] = result.get("dependencies", {})
+    
     # Save the output file
     target_path = str(Path(__file__).parent / "outputs" / "zombie_report.json")
     save_zombie_report_json(report, target_path)
