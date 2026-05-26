@@ -266,7 +266,7 @@ async def get_zombie_report(request: Request):
 
 
 @app.post("/zombie-scan", summary="Trigger a full Zombie detection scan")
-@limiter.limit("5/minute")
+@limiter.limit("100/minute")
 async def post_zombie_scan(request: Request, body: ScanRequest):
     """
     Phase 2 pipeline: Vulnerability Scan + Github Vital Signs.

@@ -106,6 +106,47 @@ The application is now running securely under HTTPS:
 
 ---
 
+## Benchmarking Commands
+
+Test it with 30 people at the same time 
+```bash
+torres in ~                                                                    13s  10:55:29
+❯ seq 1 30 | xargs -I {} -P 30 curl -s -o /dev/null -w "User {}: HTTP %{http_code} (took %{time_total}s)\n" \
+  -X POST https://ship-happens.duckdns.org:14361/api/zombie-scan \
+  -H "Content-Type: application/json" \
+  -d '{"repo_url": "https://github.com/boto/boto3"}'
+User 6: HTTP 200 (took 11.398266s)
+User 29: HTTP 200 (took 11.550966s)
+User 19: HTTP 200 (took 12.084509s)
+User 7: HTTP 200 (took 12.164908s)
+User 8: HTTP 200 (took 12.350183s)
+User 24: HTTP 200 (took 12.503482s)
+User 16: HTTP 200 (took 12.580276s)
+User 4: HTTP 200 (took 12.706819s)
+User 1: HTTP 200 (took 12.841257s)
+User 17: HTTP 200 (took 12.876592s)
+User 26: HTTP 200 (took 13.275114s)
+User 10: HTTP 200 (took 13.322581s)
+User 12: HTTP 200 (took 13.384708s)
+User 20: HTTP 200 (took 13.375558s)
+User 25: HTTP 200 (took 13.383529s)
+User 21: HTTP 200 (took 13.469417s)
+User 23: HTTP 200 (took 13.487115s)
+User 14: HTTP 200 (took 13.508351s)
+User 15: HTTP 200 (took 13.545263s)
+User 18: HTTP 200 (took 13.663789s)
+User 30: HTTP 200 (took 13.663449s)
+User 13: HTTP 200 (took 13.702396s)
+User 11: HTTP 200 (took 13.709467s)
+User 3: HTTP 200 (took 13.735153s)
+User 2: HTTP 200 (took 13.741392s)
+User 27: HTTP 200 (took 13.722346s)
+User 9: HTTP 200 (took 13.781607s)
+User 28: HTTP 200 (took 13.850546s)
+User 22: HTTP 200 (took 16.347667s)
+User 5: HTTP 200 (took 16.373052s)
+```
+
 ## Helpful Operations Commands
 
 - **Check Logs:**
